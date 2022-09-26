@@ -66,11 +66,55 @@ public interface IParserError
 
 **Message** - Error message with failure information.
 
+# Creating a simple digit parser with *AlphaX.Parserz*
+
+Create a *DigitParser* class by inheriting *AlphaX.Parserz.[Parser<T>](https://github.com/kartikdeepsagar/AlphaX.Parserz/blob/master/AlphaX.Parserz/Parsers/ParserBase.cs)* class and override its **ParseInput** method as follows:
+```c#
+public class DigitParser : Parser<ByteResult>
+{
+      protected override IParserState ParseInput(IParserState inputState)
+      {
+            var targetString = inputState.Input;
+
+            if (string.IsNullOrEmpty(targetString))
+                return CreateErrorState(inputState, new ParserError(inputState.Index,
+                    string.Format(ParserMessages.UnexpectedInputError, inputState.Index, ParserMessages.Digits, targetString)));
+
+            var character = targetString[0];
+            if (char.IsDigit(character))
+            {
+                return CreateResultState(inputState, new ByteResult(Convert.ToByte(character - '0')), inputState.Index + 1);
+            }
+
+            return CreateErrorState(inputState, new ParserError(inputState.Index, 
+                string.Format(ParserMessages.UnexpectedInputError, inputState.Index, ParserMessages.Digits, targetString)));
+     }
+}
+```
+It's that simple! :-)
+
+This library provides some inbuilt parsers to make your work easy. However, you can always use these inbuilt parsers to make a more complex parser or create your own parsers
+```c#
+public static class Parser
+{
+      public static IParser<ByteResult> Digit { get; }
+      public static IParser<DoubleResult> Decimal { get; }
+      public static IParser LetterOrDigit { get; }
+      public static IParser<BooleanResult> Boolean { get; }
+      ...
+        
+      static Parser()
+      {
+          Digit = new DigitParser();
+          ...
+      }
+```
+
 Lets look at some examples for getting a headstart.
 
 * Parsing Digit
 ```c#
-var resultState = Parser.Digit.Run("1"); // resturns a result state
+var resultState = Parser.Digit.Run("1");
 ```
 * Parsing Multiple Digits
 ```c#
@@ -79,3 +123,11 @@ int maximumCount = 3;
 var threeDigitParser = Parser.Digit.Many(1, 3);
 var resultState = threeDigitParser.Run("874");
 ```
+You can see that we have used an extension method i.e. **Many** in the above code. It just returns a new ManyParser which basically runs the input parser on the input string provided number (min/max) of times.
+```c#
+ public static IParser<ArrayResult> Many(this IParser parser, int minCount = 0, int maxCount = -1)
+ {
+       return new ManyParser(parser, minCount, maxCount);
+ }
+```
+// explain extensible parsers later
