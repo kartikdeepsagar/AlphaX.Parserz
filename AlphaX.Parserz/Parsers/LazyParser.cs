@@ -1,7 +1,7 @@
 ﻿using AlphaX.Parserz.Interfaces;
 using System;
 
-namespace AlphaX.Parserz.Parsers
+namespace AlphaX.Parserz
 {
     public class LazyParser : Parser<IParserResult>
     {

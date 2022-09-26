@@ -3,7 +3,7 @@ using AlphaX.Parserz.Interfaces;
 using AlphaX.Parserz.Resources;
 using AlphaX.Parserz.Results;
 
-namespace AlphaX.Parserz.Parsers
+namespace AlphaX.Parserz
 {
     public class LetterParser : Parser<CharResult>
     {

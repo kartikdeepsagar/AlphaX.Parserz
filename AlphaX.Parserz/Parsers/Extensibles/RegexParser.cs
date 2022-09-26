@@ -2,7 +2,7 @@
 using AlphaX.Parserz.Interfaces;
 using System.Text.RegularExpressions;
 
-namespace AlphaX.Parserz.Parsers
+namespace AlphaX.Parserz
 {
     public abstract class RegexParser<T> : Parser<T> where T : IParserResult
     {

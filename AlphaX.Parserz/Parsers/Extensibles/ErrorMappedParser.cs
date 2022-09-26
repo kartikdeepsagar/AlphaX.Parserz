@@ -1,7 +1,7 @@
 ﻿using AlphaX.Parserz.Interfaces;
 using System;
 
-namespace AlphaX.Parserz.Parsers
+namespace AlphaX.Parserz
 {
     public class ErrorMappedParser<T> : Parser<T> where T : IParserResult
     {

@@ -1,7 +1,7 @@
 ﻿using AlphaX.Parserz.Interfaces;
 using System;
 
-namespace AlphaX.Parserz.Parsers
+namespace AlphaX.Parserz
 {
     public class ResultMappedParser<TIn, TOut> : Parser<TOut> 
         where TOut : IParserResult

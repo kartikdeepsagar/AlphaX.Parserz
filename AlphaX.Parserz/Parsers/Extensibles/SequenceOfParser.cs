@@ -3,7 +3,7 @@ using AlphaX.Parserz.Results;
 using System;
 using System.Collections.Generic;
 
-namespace AlphaX.Parserz.Parsers
+namespace AlphaX.Parserz
 {
     public class SequenceOfParser : Parser<ArrayResult>
     {

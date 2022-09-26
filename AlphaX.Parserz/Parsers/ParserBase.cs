@@ -1,6 +1,6 @@
 ﻿using AlphaX.Parserz.Interfaces;
 
-namespace AlphaX.Parserz.Parsers
+namespace AlphaX.Parserz
 {
     /// <summary>
     /// Class that represents a parser of type <typeparamref name="T"/>

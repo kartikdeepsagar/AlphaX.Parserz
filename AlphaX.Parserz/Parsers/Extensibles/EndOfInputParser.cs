@@ -2,7 +2,7 @@
 using AlphaX.Parserz.Interfaces;
 using AlphaX.Parserz.Resources;
 
-namespace AlphaX.Parserz.Parsers
+namespace AlphaX.Parserz
 {
     public class EndOfInputParser : Parser<IParserResult>
     {
