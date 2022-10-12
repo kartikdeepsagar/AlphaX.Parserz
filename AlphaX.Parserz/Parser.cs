@@ -47,8 +47,8 @@ namespace AlphaX.Parserz
             LetterOrDigit = Letter.Or(Digit)
                             .MapError(x => new ParserError(x.Index, string.Format(ParserMessages.InputError, x.Index, "a letter or digit")));
 
-            Boolean = String("true")
-                        .Or(String("false"))
+            Boolean = String("true", false)
+                        .Or(String("false", false))
                         .MapResult(x => new BooleanResult(bool.Parse(x.Value.ToString())))
                         .MapError(x => new ParserError(x.Index, string.Format(ParserMessages.InputError, x.Index, "true/false")));
 
