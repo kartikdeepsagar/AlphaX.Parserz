@@ -73,7 +73,11 @@ namespace AlphaX.Parserz
         /// <param name="matchCase"></param>
         /// <returns></returns>
         public static IParser<StringResult> String(string value, bool matchCase = false) => new StringParser(value, matchCase);
-
+        /// <summary>
+        /// Gets the lazy parser.
+        /// </summary>
+        /// <param name="parser"></param>
+        /// <returns></returns>
         public static IParser Lazy(Func<IParser> parser) => new LazyParser(parser);
     }
 }

@@ -1,6 +1,7 @@
-﻿using AlphaX.Parserz.Interfaces;
+﻿using AlphaX.Parserz.Exceptions;
+using AlphaX.Parserz.Interfaces;
+using AlphaX.Parserz.Resources;
 using AlphaX.Parserz.Results;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,16 +15,56 @@ namespace AlphaX.Parserz.Extensions
             return (T)result;
         }
 
+        /// <summary>
+        /// Converts array result to int32 result.
+        /// </summary>
+        /// <param name="results"></param>
+        /// <returns></returns>
         public static Int32Result ToInt32Result(this ArrayResult results)
         {
-            return new Int32Result(int.Parse(results.Concat()));
+            string input = results.Concat();
+
+            if (!int.TryParse(input, out int result))
+                throw new ParsingException(string.Format(ParserMessages.TypeConvertError, input, typeof(Int32Result)));
+
+            return new Int32Result(result);
         }
 
+        /// <summary>
+        /// Converts array result to int64 result.
+        /// </summary>
+        /// <param name="results"></param>
+        /// <returns></returns>
+        public static Int64Result ToInt64Result(this ArrayResult results)
+        {
+            string input = results.Concat();
+
+            if(!long.TryParse(input, out long result))
+                throw new ParsingException(string.Format(ParserMessages.TypeConvertError, input, typeof(Int64Result)));
+
+            return new Int64Result(result);
+        }
+
+        /// <summary>
+        /// Converts array result to double result. Returns 0 if conversion fails.
+        /// </summary>
+        /// <param name="results"></param>
+        /// <returns></returns>
         public static DoubleResult ToDoubleResult(this ArrayResult results)
         {
-            return new DoubleResult(double.Parse(results.Concat()));
+            string input = results.Concat();
+
+            if(!double.TryParse(input, out double result))
+                throw new ParsingException(string.Format(ParserMessages.TypeConvertError, input, typeof(DoubleResult)));
+
+            return new DoubleResult(result);
         }
 
+        /// <summary>
+        /// Converts array result to string result.
+        /// </summary>
+        /// <param name="results"></param>
+        /// <returns></returns>
         public static StringResult ToStringResult(this ArrayResult results)
         {
             List<IParserResult> resultItems = results.ToList();
@@ -45,10 +86,10 @@ namespace AlphaX.Parserz.Extensions
                 }
             }
 
-            return new StringResult(new ArrayResult(resultItems.ToArray()).Concat());
+            return new StringResult(resultItems.Concat());
         }
 
-        private static string Concat(this ArrayResult result)
+        private static string Concat(this IEnumerable<IParserResult> result)
         {
             return string.Concat(result.Select(x => x.Value));
         }

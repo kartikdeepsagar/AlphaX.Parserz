@@ -1,4 +1,6 @@
-﻿namespace AlphaX.Parserz.Interfaces
+﻿using AlphaX.Parserz.Parsers;
+
+namespace AlphaX.Parserz.Interfaces
 {
     /// <summary>
     /// Interface that represents a parser result.
@@ -6,6 +8,10 @@
     public interface IParserResult
     {
         object Value { get; }
+        /// <summary>
+        /// Gets the result type
+        /// </summary>
+        ParserResultType Type { get; }
     }
 
     /// <summary>

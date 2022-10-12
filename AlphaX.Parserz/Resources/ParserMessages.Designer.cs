@@ -142,6 +142,15 @@ namespace AlphaX.Parserz.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to parse &apos;{0}&apos; to &apos;{1}&apos;.
+        /// </summary>
+        internal static string TypeConvertError {
+            get {
+                return ResourceManager.GetString("TypeConvertError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Position ({0}): Unexpected input. Expected &apos;{1}&apos; but got &apos;{2}&apos;.
         /// </summary>
         internal static string UnexpectedInputError {

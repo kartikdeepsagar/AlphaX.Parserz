@@ -1,5 +1,6 @@
 ﻿using AlphaX.Parserz;
 using AlphaX.Parserz.Interfaces;
+using AlphaX.Parserz.Parsers;
 using AlphaX.Parserz.Results;
 using NUnit.Framework;
 
@@ -23,6 +24,7 @@ namespace AlphaX.Parserz.Tests
         public void LetterParser_Success_Test(string value)
         {
             var resultState = _letterParser.Run(value);
+            Assert.AreEqual(resultState.Result.Type, ParserResultType.Char);
             Assert.IsFalse(resultState.IsError);
             Assert.IsInstanceOf(typeof(CharResult), resultState.Result);
         }

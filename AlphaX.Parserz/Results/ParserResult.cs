@@ -1,4 +1,5 @@
 ﻿using AlphaX.Parserz.Interfaces;
+using AlphaX.Parserz.Parsers;
 using System.Diagnostics;
 
 namespace AlphaX.Parserz.Results
@@ -10,9 +11,12 @@ namespace AlphaX.Parserz.Results
         public T Value => (T)_value;
         object IParserResult.Value => _value;
 
-        public ParserResult(T value)
+        public ParserResultType Type { get; }
+
+        public ParserResult(T value, ParserResultType resultType)
         {
             _value = value;
+            Type = resultType;
         }
     }
 }

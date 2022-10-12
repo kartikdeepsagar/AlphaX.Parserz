@@ -1,5 +1,6 @@
 ﻿using AlphaX.Parserz;
 using AlphaX.Parserz.Interfaces;
+using AlphaX.Parserz.Parsers;
 using AlphaX.Parserz.Results;
 using NUnit.Framework;
 
@@ -22,6 +23,7 @@ namespace AlphaX.Parserz.Tests
         public void DigitParser_Success_Test(string value)
         {
             var resultState = _digitParser.Run(value);
+            Assert.AreEqual(resultState.Result.Type, ParserResultType.Number);
             Assert.IsFalse(resultState.IsError);
             Assert.IsInstanceOf(typeof(ByteResult), resultState.Result);
         }

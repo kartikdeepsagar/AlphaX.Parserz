@@ -1,5 +1,6 @@
 ﻿using AlphaX.Parserz;
 using AlphaX.Parserz.Interfaces;
+using AlphaX.Parserz.Parsers;
 using AlphaX.Parserz.Results;
 using NUnit.Framework;
 
@@ -24,6 +25,7 @@ namespace AlphaX.Parserz.Tests
         public void DecimalParser_Success_Test(string value)
         {
             var resultState = _decimalParser.Run(value);
+            Assert.AreEqual(resultState.Result.Type, ParserResultType.Decimal);
             Assert.IsFalse(resultState.IsError);
             Assert.IsInstanceOf(typeof(DoubleResult), resultState.Result);
         }
