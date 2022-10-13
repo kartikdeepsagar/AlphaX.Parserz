@@ -1,6 +1,4 @@
-﻿using AlphaX.Parserz.Parsers;
-
-namespace AlphaX.Parserz.Results
+﻿namespace AlphaX.Parserz.Results
 {
     public class Int32Result : ParserResult<int>
     {

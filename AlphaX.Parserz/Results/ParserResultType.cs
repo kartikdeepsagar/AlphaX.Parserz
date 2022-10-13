@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AlphaX.Parserz.Parsers
+﻿namespace AlphaX.Parserz
 {
     public class ParserResultType
     {

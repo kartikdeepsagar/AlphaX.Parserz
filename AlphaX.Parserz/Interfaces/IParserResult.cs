@@ -1,6 +1,4 @@
-﻿using AlphaX.Parserz.Parsers;
-
-namespace AlphaX.Parserz.Interfaces
+﻿namespace AlphaX.Parserz.Interfaces
 {
     /// <summary>
     /// Interface that represents a parser result.

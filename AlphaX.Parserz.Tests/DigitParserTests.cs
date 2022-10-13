@@ -1,28 +1,17 @@
-﻿using AlphaX.Parserz;
-using AlphaX.Parserz.Interfaces;
-using AlphaX.Parserz.Parsers;
-using AlphaX.Parserz.Results;
+﻿using AlphaX.Parserz.Results;
 using NUnit.Framework;
 
 namespace AlphaX.Parserz.Tests
 {
     public class DigitParserTests
     {
-        private IParser _digitParser;
-
-        [SetUp]
-        public void Setup()
-        {
-            _digitParser = Parser.Digit;
-        }
-
         [TestCase("1")]
         [TestCase("0")]
         [TestCase("5")]
         [TestCase("4")]
         public void DigitParser_Success_Test(string value)
         {
-            var resultState = _digitParser.Run(value);
+            var resultState = Parser.Digit.Run(value);
             Assert.AreEqual(resultState.Result.Type, ParserResultType.Number);
             Assert.IsFalse(resultState.IsError);
             Assert.IsInstanceOf(typeof(ByteResult), resultState.Result);
@@ -36,7 +25,7 @@ namespace AlphaX.Parserz.Tests
         [TestCase("x")]
         public void DecimalParser_Failure_Test(string value)
         {
-            var resultState = _digitParser.Run(value);
+            var resultState = Parser.Digit.Run(value);
             Assert.IsTrue(resultState.IsError);
         }
     }

@@ -1,6 +1,4 @@
-﻿using AlphaX.Parserz.Parsers;
-
-namespace AlphaX.Parserz.Results
+﻿namespace AlphaX.Parserz.Results
 {
     public class StringResult : ParserResult<string>
     {
