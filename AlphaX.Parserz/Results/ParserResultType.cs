@@ -3,7 +3,6 @@
     public class ParserResultType
     {
         public static ParserResultType Number = new ParserResultType("Number");
-        public static ParserResultType Decimal = new ParserResultType("Decimal");
         public static ParserResultType String = new ParserResultType("String");
         public static ParserResultType Boolean = new ParserResultType("Boolean");
         public static ParserResultType Array = new ParserResultType("Array");

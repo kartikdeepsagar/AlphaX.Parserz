@@ -14,7 +14,7 @@ namespace AlphaX.Parserz.Tests
             var resultState = Parser.Digit.Run(value);
             Assert.AreEqual(resultState.Result.Type, ParserResultType.Number);
             Assert.IsFalse(resultState.IsError);
-            Assert.IsInstanceOf(typeof(ByteResult), resultState.Result);
+            Assert.IsInstanceOf(typeof(DoubleResult), resultState.Result);
         }
 
         [TestCase("a")]

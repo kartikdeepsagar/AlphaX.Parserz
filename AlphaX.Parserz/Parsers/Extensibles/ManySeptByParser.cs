@@ -41,7 +41,7 @@ namespace AlphaX.Parserz
                 inputState = state;
             }
 
-            var result = new ArrayResult(results.ToArray());
+            var result = results.Count == 0 ? ArrayResult.Empty : new ArrayResult(results.ToArray());
 
             if (results.Count < MinCount)
             {

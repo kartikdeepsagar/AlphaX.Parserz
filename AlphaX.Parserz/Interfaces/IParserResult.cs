@@ -5,6 +5,7 @@
     /// </summary>
     public interface IParserResult
     {
+        bool IsValid { get; }
         object Value { get; }
         /// <summary>
         /// Gets the result type

@@ -28,7 +28,8 @@ namespace AlphaX.Parserz
                 results.Add(inputState.Result);
             }
 
-            return CreateResultState(inputState, new ArrayResult(results.ToArray()), inputState.Index);
+            var result = results.Count == 0 ? ArrayResult.Empty : new ArrayResult(results.ToArray());
+            return CreateResultState(inputState, result, inputState.Index);
         }
     }
 }

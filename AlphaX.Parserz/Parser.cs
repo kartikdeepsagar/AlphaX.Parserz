@@ -1,5 +1,6 @@
 ﻿using AlphaX.Parserz.Extensions;
 using AlphaX.Parserz.Interfaces;
+using AlphaX.Parserz.Parsers;
 using AlphaX.Parserz.Resources;
 using AlphaX.Parserz.Results;
 using System;
@@ -20,11 +21,7 @@ namespace AlphaX.Parserz
         /// <summary>
         /// Gets the digit parser.
         /// </summary>
-        public static IParser<ByteResult> Digit { get; }
-        /// <summary>
-        /// Gets the decimal parser.
-        /// </summary>
-        public static IParser<DoubleResult> Decimal { get; }
+        public static IParser<DoubleResult> Digit { get; }
         /// <summary>
         /// Gets the letter or digit parser.
         /// </summary>
@@ -52,11 +49,6 @@ namespace AlphaX.Parserz
                         .MapResult(x => new BooleanResult(bool.Parse(x.Value.ToString())))
                         .MapError(x => new ParserError(x.Index, string.Format(ParserMessages.InputError, x.Index, "true/false")));
 
-            var digitsParser = Digit.Many(1).MapResult(x => x.ToStringResult());
-            Decimal = digitsParser.AndThen(String(NumberFormatInfo.CurrentInfo.NumberDecimalSeparator))
-                       .AndThen(digitsParser)
-                       .MapResult(x => x.ToDoubleResult());
-
             WhiteSpace = Char(' ');
         }
 
@@ -73,6 +65,12 @@ namespace AlphaX.Parserz
         /// <param name="matchCase"></param>
         /// <returns></returns>
         public static IParser<StringResult> String(string value, bool matchCase = false) => new StringParser(value, matchCase);
+        /// <summary>
+        /// Gets the number parser.
+        /// </summary>
+        /// <param name="decimalSeperator"></param>
+        /// <returns></returns>
+        public static IParser<DoubleResult> Number(string decimalSeperator = ".") => new NumberParser(decimalSeperator);
         /// <summary>
         /// Gets the lazy parser.
         /// </summary>

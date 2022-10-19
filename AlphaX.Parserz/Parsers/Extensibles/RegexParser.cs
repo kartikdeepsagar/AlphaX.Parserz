@@ -1,5 +1,4 @@
-﻿using AlphaX.Parserz.Extensions;
-using AlphaX.Parserz.Interfaces;
+﻿using AlphaX.Parserz.Interfaces;
 using System.Text.RegularExpressions;
 
 namespace AlphaX.Parserz
@@ -18,10 +17,17 @@ namespace AlphaX.Parserz
             var targetString = inputState.Input;
             var match = Regex.Match(targetString);
 
-            if (match.Success)
-                return CreateResultState(inputState, ConvertResult(match.Value), inputState.Index + match.Length);
+            if (!match.Success)
+            {
+                return CreateErrorState(inputState, CreateError(match.Index, inputState.Input));
+            }
 
-            return CreateErrorState(inputState, CreateError(match.Index, targetString));
+            var result = ConvertResult(match.Value);
+
+            if (result != null && result.IsValid)
+                return CreateResultState(inputState, result, inputState.Index + match.Length);
+
+            return CreateErrorState(inputState, CreateError(match.Index, inputState.Input));
         }
 
         protected abstract T ConvertResult(string value);

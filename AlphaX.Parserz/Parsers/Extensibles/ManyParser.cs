@@ -1,7 +1,6 @@
 ﻿using AlphaX.Parserz.Interfaces;
 using AlphaX.Parserz.Resources;
 using AlphaX.Parserz.Results;
-using System;
 using System.Collections.Generic;
 
 namespace AlphaX.Parserz
@@ -34,7 +33,7 @@ namespace AlphaX.Parserz
                 inputState = state;
             }
 
-            var result = new ArrayResult(results.ToArray());
+            var result = results.Count == 0 ? ArrayResult.Empty : new ArrayResult(results.ToArray());
 
             if (results.Count < MinCount)
             {

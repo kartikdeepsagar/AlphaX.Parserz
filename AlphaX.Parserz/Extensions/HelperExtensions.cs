@@ -3,56 +3,20 @@ using AlphaX.Parserz.Interfaces;
 using AlphaX.Parserz.Resources;
 using AlphaX.Parserz.Results;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 
 namespace AlphaX.Parserz.Extensions
 {
     public static class HelperExtensions
     {
-        public static T As<T>(this IParserResult result)
-            where T : IParserResult
-        {
-            return (T)result;
-        }
-
-        /// <summary>
-        /// Converts array result to int32 result.
-        /// </summary>
-        /// <param name="results"></param>
-        /// <returns></returns>
-        public static Int32Result ToInt32Result(this ArrayResult results)
-        {
-            string input = results.Concat();
-
-            if (!int.TryParse(input, out int result))
-                throw new ParsingException(string.Format(ParserMessages.TypeConvertError, input, typeof(Int32Result)));
-
-            return new Int32Result(result);
-        }
-
-        /// <summary>
-        /// Converts array result to int64 result.
-        /// </summary>
-        /// <param name="results"></param>
-        /// <returns></returns>
-        public static Int64Result ToInt64Result(this ArrayResult results)
-        {
-            string input = results.Concat();
-
-            if(!long.TryParse(input, out long result))
-                throw new ParsingException(string.Format(ParserMessages.TypeConvertError, input, typeof(Int64Result)));
-
-            return new Int64Result(result);
-        }
-
         /// <summary>
         /// Converts array result to double result. Returns 0 if conversion fails.
         /// </summary>
-        /// <param name="results"></param>
+        /// <param name="arrayResult"></param>
         /// <returns></returns>
-        public static DoubleResult ToDoubleResult(this ArrayResult results)
+        public static DoubleResult ToDoubleResult(this ArrayResult arrayResult)
         {
-            string input = results.Concat();
+            string input = arrayResult.ToStringResult().Value;
 
             if(!double.TryParse(input, out double result))
                 throw new ParsingException(string.Format(ParserMessages.TypeConvertError, input, typeof(DoubleResult)));
@@ -63,35 +27,70 @@ namespace AlphaX.Parserz.Extensions
         /// <summary>
         /// Converts array result to string result.
         /// </summary>
-        /// <param name="results"></param>
+        /// <param name="arrayResult"></param>
         /// <returns></returns>
-        public static StringResult ToStringResult(this ArrayResult results)
+        public static StringResult ToStringResult(this ArrayResult arrayResult)
         {
-            List<IParserResult> resultItems = results.ToList();
+            var nodes = new Queue<IParserResult>();
+            nodes.Enqueue(arrayResult);
+            var stringBuilder = new StringBuilder();
 
-            for(int index = 0; index < resultItems.Count; index++)
+            while (nodes.Count != 0)
             {
-                var result = resultItems[index];
+                var item = nodes.Dequeue();
 
-                if(result is ArrayResult arrayResult)
+                if (item is ArrayResult aResult)
                 {
-                    resultItems.Remove(arrayResult);
-                    for (int index2 = 0; index2 < arrayResult.Value.Length; index2++)
-                        resultItems.Insert(index + index2, arrayResult.Value[index2]);
+                    for (int index = 0; index < aResult.Value.Length; index++)
+                        nodes.Enqueue(aResult.Value[index]);
                 }
                 else
                 {
-                    if(!resultItems.Contains(result))
-                        resultItems.Insert(index, result);
+                    stringBuilder.Append(item.Value);
                 }
             }
 
-            return new StringResult(resultItems.Concat());
+            return new StringResult(stringBuilder.ToString());
         }
 
-        private static string Concat(this IEnumerable<IParserResult> result)
+        /// <summary>
+        /// Converts string result to double result.
+        /// </summary>
+        /// <param name="stringResult"></param>
+        /// <returns></returns>
+        public static DoubleResult ToDoubleResult(this StringResult stringResult)
         {
-            return string.Concat(result.Select(x => x.Value));
+            try
+            {
+                if (!string.IsNullOrEmpty(stringResult.Value))
+                    return new DoubleResult(double.Parse(stringResult.Value));
+
+                return DoubleResult.Invalid;
+            }
+            catch
+            {
+                return DoubleResult.Invalid;
+            }
+        }
+
+        /// <summary>
+        /// Converts string result to boolean result.
+        /// </summary>
+        /// <param name="stringResult"></param>
+        /// <returns></returns>
+        public static BooleanResult ToBooleanResult(this StringResult stringResult)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(stringResult.Value))
+                    return new BooleanResult(bool.Parse(stringResult.Value));
+
+                return BooleanResult.Invalid;
+            }
+            catch
+            {
+                return BooleanResult.Invalid;
+            }
         }
     }
 }

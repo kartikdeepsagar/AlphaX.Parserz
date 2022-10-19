@@ -2,9 +2,16 @@
 {
     public class DoubleResult : ParserResult<double>
     {
-        public DoubleResult(double value) : base(value, ParserResultType.Decimal)
+        public static DoubleResult Invalid = new DoubleResult();
+
+        public DoubleResult(double value) : base(value, ParserResultType.Number)
         {
             
+        }
+
+        private DoubleResult() : base()
+        {
+
         }
     }
 }
