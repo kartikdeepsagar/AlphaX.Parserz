@@ -1,56 +1,96 @@
-﻿using AlphaX.Parserz.Interfaces;
+﻿using AlphaX.Parserz.Exceptions;
+using AlphaX.Parserz.Interfaces;
+using AlphaX.Parserz.Resources;
 using AlphaX.Parserz.Results;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 
 namespace AlphaX.Parserz.Extensions
 {
     public static class HelperExtensions
     {
-        public static T As<T>(this IParserResult result)
-            where T : IParserResult
+        /// <summary>
+        /// Converts array result to double result. Returns 0 if conversion fails.
+        /// </summary>
+        /// <param name="arrayResult"></param>
+        /// <returns></returns>
+        public static DoubleResult ToDoubleResult(this ArrayResult arrayResult)
         {
-            return (T)result;
+            string input = arrayResult.ToStringResult().Value;
+
+            if(!double.TryParse(input, out double result))
+                throw new ParsingException(string.Format(ParserMessages.TypeConvertError, input, typeof(DoubleResult)));
+
+            return new DoubleResult(result);
         }
 
-        public static Int32Result ToInt32Result(this ArrayResult results)
+        /// <summary>
+        /// Converts array result to string result.
+        /// </summary>
+        /// <param name="arrayResult"></param>
+        /// <returns></returns>
+        public static StringResult ToStringResult(this ArrayResult arrayResult)
         {
-            return new Int32Result(int.Parse(results.Concat()));
-        }
+            var nodes = new Queue<IParserResult>();
+            nodes.Enqueue(arrayResult);
+            var stringBuilder = new StringBuilder();
 
-        public static DoubleResult ToDoubleResult(this ArrayResult results)
-        {
-            return new DoubleResult(double.Parse(results.Concat()));
-        }
-
-        public static StringResult ToStringResult(this ArrayResult results)
-        {
-            List<IParserResult> resultItems = results.ToList();
-
-            for(int index = 0; index < resultItems.Count; index++)
+            while (nodes.Count != 0)
             {
-                var result = resultItems[index];
+                var item = nodes.Dequeue();
 
-                if(result is ArrayResult arrayResult)
+                if (item is ArrayResult aResult)
                 {
-                    resultItems.Remove(arrayResult);
-                    for (int index2 = 0; index2 < arrayResult.Value.Length; index2++)
-                        resultItems.Insert(index + index2, arrayResult.Value[index2]);
+                    for (int index = 0; index < aResult.Value.Length; index++)
+                        nodes.Enqueue(aResult.Value[index]);
                 }
                 else
                 {
-                    if(!resultItems.Contains(result))
-                        resultItems.Insert(index, result);
+                    stringBuilder.Append(item.Value);
                 }
             }
 
-            return new StringResult(new ArrayResult(resultItems.ToArray()).Concat());
+            return new StringResult(stringBuilder.ToString());
         }
 
-        private static string Concat(this ArrayResult result)
+        /// <summary>
+        /// Converts string result to double result.
+        /// </summary>
+        /// <param name="stringResult"></param>
+        /// <returns></returns>
+        public static DoubleResult ToDoubleResult(this StringResult stringResult)
         {
-            return string.Concat(result.Select(x => x.Value));
+            try
+            {
+                if (!string.IsNullOrEmpty(stringResult.Value))
+                    return new DoubleResult(double.Parse(stringResult.Value));
+
+                return DoubleResult.Invalid;
+            }
+            catch
+            {
+                return DoubleResult.Invalid;
+            }
+        }
+
+        /// <summary>
+        /// Converts string result to boolean result.
+        /// </summary>
+        /// <param name="stringResult"></param>
+        /// <returns></returns>
+        public static BooleanResult ToBooleanResult(this StringResult stringResult)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(stringResult.Value))
+                    return new BooleanResult(bool.Parse(stringResult.Value));
+
+                return BooleanResult.Invalid;
+            }
+            catch
+            {
+                return BooleanResult.Invalid;
+            }
         }
     }
 }

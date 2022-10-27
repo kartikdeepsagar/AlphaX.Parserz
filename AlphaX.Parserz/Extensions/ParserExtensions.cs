@@ -1,5 +1,4 @@
 ﻿using AlphaX.Parserz.Interfaces;
-using AlphaX.Parserz.Parsers;
 using AlphaX.Parserz.Results;
 using System;
 using System.Collections.Generic;
@@ -115,6 +114,20 @@ namespace AlphaX.Parserz.Extensions
         public static IParser<ArrayResult> Many(this IParser parser, int minCount = 0, int maxCount = -1)
         {
             return new ManyParser(parser, minCount, maxCount);
+        }
+
+        /// <summary>
+        /// Creates a many seperated by parser that will run the provided parser continuously 
+        /// on an input string until it fails or reaches the input end.
+        /// </summary>
+        /// <param name="parser"></param>
+        /// <param name="septByParser"></param>
+        /// <param name="minCount">Minimum number of times that the parser should successfully run</param>
+        /// <param name="maxCount">Maximum number of times that the parser should successfully run. Note: Skips this check if value is -1.</param>
+        /// <returns>A many parser</returns>
+        public static IParser<ArrayResult> ManySeptBy(this IParser parser, IParser septByParser, int minCount = 0, int maxCount = -1)
+        {
+            return new ManySeptByParser(parser, septByParser, minCount, maxCount);
         }
 
         /// <summary>

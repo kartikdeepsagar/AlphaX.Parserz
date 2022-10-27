@@ -2,7 +2,7 @@
 using AlphaX.Parserz.Resources;
 using System.Collections.Generic;
 
-namespace AlphaX.Parserz.Parsers
+namespace AlphaX.Parserz
 {
     public class ChoiceParser : Parser<IParserResult>
     {

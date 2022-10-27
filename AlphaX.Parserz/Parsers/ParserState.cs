@@ -1,6 +1,6 @@
 ﻿using AlphaX.Parserz.Interfaces;
 
-namespace AlphaX.Parserz.Parsers
+namespace AlphaX.Parserz
 {
     public class ParserState : IParserState
     {

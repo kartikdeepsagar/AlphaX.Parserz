@@ -1,20 +1,10 @@
-﻿using AlphaX.Parserz;
-using AlphaX.Parserz.Interfaces;
-using AlphaX.Parserz.Results;
+﻿using AlphaX.Parserz.Results;
 using NUnit.Framework;
 
 namespace AlphaX.Parserz.Tests
 {
     public class LetterParserTests
     {
-        private IParser _letterParser;
-
-        [SetUp]
-        public void Setup()
-        {
-            _letterParser = Parser.Letter;
-        }
-
         [TestCase("a")]
         [TestCase("X")]
         [TestCase("x")]
@@ -22,7 +12,8 @@ namespace AlphaX.Parserz.Tests
         [TestCase("P")]
         public void LetterParser_Success_Test(string value)
         {
-            var resultState = _letterParser.Run(value);
+            var resultState = Parser.Letter.Run(value);
+            Assert.AreEqual(resultState.Result.Type, ParserResultType.Char);
             Assert.IsFalse(resultState.IsError);
             Assert.IsInstanceOf(typeof(CharResult), resultState.Result);
         }
@@ -35,7 +26,7 @@ namespace AlphaX.Parserz.Tests
         [TestCase(";")]
         public void LetterParser_Failure_Test(string value)
         {
-            var resultState = _letterParser.Run(value);
+            var resultState = Parser.Letter.Run(value);
             Assert.IsTrue(resultState.IsError);
         }
     }

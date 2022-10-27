@@ -5,15 +5,17 @@ using System.Collections.Generic;
 
 namespace AlphaX.Parserz
 {
-    public class ManyParser : Parser<ArrayResult>
+    public class ManySeptByParser : Parser<ArrayResult>
     {
+        public IParser Parser { get; }
+        public IParser SeptByParser { get; }
         public int MinCount { get; }
         public int MaxCount { get; }
-        public IParser Parser { get; }
 
-        public ManyParser(IParser parser, int minCount = 0, int maxCount = -1)
+        public ManySeptByParser(IParser parser, IParser septByParser, int minCount = 0, int maxCount = -1)
         {
             Parser = parser;
+            SeptByParser = septByParser;
             MinCount = minCount;
             MaxCount = maxCount;
         }
@@ -30,6 +32,12 @@ namespace AlphaX.Parserz
                     break;
 
                 results.Add(state.Result);
+                inputState = state;
+
+                state = SeptByParser.Parse(state);
+                if (state.IsError)
+                    break;
+
                 inputState = state;
             }
 

@@ -4,7 +4,7 @@ using AlphaX.Parserz.Resources;
 using AlphaX.Parserz.Results;
 using System;
 
-namespace AlphaX.Parserz.Parsers
+namespace AlphaX.Parserz
 {
     public class StringParser : Parser<StringResult>
     {

@@ -1,12 +1,17 @@
-﻿using AlphaX.Parserz.Interfaces;
-
-namespace AlphaX.Parserz.Results
+﻿namespace AlphaX.Parserz.Results
 {
     public class BooleanResult : ParserResult<bool>
     {
-        public BooleanResult(bool value) : base(value)
+        public static BooleanResult Invalid = new BooleanResult();
+
+        public BooleanResult(bool value) : base(value, ParserResultType.Boolean)
         {
             
+        }
+
+        public BooleanResult() : base()
+        {
+
         }
     }
 }

@@ -1,10 +1,15 @@
-﻿using AlphaX.Parserz.Interfaces;
-
-namespace AlphaX.Parserz.Results
+﻿namespace AlphaX.Parserz.Results
 {
     public class CharResult : ParserResult<char>
     {
-        public CharResult(char value) : base(value)
+        public static CharResult Invalid = new CharResult();
+
+        public CharResult(char value) : base(value, ParserResultType.Char)
+        {
+
+        }
+
+        public CharResult() : base()
         {
 
         }

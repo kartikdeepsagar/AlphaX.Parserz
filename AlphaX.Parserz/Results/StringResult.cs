@@ -1,12 +1,17 @@
-﻿using AlphaX.Parserz.Interfaces;
-
-namespace AlphaX.Parserz.Results
+﻿namespace AlphaX.Parserz.Results
 {
     public class StringResult : ParserResult<string>
     {
-        public StringResult(string value) : base(value)
+        public static StringResult Invalid = new StringResult();
+
+        public StringResult(string value) : base(value, ParserResultType.String)
         {
             
+        }
+
+        public StringResult() : base()
+        {
+
         }
     }
 }

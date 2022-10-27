@@ -144,6 +144,9 @@
   <data name="NoParserMatch" xml:space="preserve">
     <value>0 parser match</value>
   </data>
+  <data name="TypeConvertError" xml:space="preserve">
+    <value>Unable to parse '{0}' to '{1}'</value>
+  </data>
   <data name="UnexpectedInputError" xml:space="preserve">
     <value>Position ({0}): Unexpected input. Expected '{1}' but got '{2}'</value>
   </data>
