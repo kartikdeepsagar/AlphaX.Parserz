@@ -3,7 +3,7 @@ using System;
 
 namespace AlphaX.Parserz
 {
-    public class ResultMappedParser<TIn, TOut> : Parser<TOut> 
+    public class ResultMappedParser<TIn, TOut> : Parser<TOut>
         where TOut : IParserResult
         where TIn : IParserResult
     {

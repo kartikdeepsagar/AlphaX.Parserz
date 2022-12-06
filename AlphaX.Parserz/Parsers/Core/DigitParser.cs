@@ -20,7 +20,7 @@ namespace AlphaX.Parserz
                 return CreateResultState(inputState, new DoubleResult(character - '0'), inputState.Index + 1);
             }
 
-            return CreateErrorState(inputState, new ParserError(inputState.Index, 
+            return CreateErrorState(inputState, new ParserError(inputState.Index,
                 string.Format(ParserMessages.UnexpectedInputError, inputState.Index, ParserMessages.Digits, targetString)));
         }
     }

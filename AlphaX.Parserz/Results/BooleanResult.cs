@@ -6,7 +6,7 @@
 
         public BooleanResult(bool value) : base(value, ParserResultType.Boolean)
         {
-            
+
         }
 
         public BooleanResult() : base()

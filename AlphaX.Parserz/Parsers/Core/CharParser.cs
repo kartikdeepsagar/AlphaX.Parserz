@@ -1,8 +1,6 @@
-﻿using AlphaX.Parserz.Extensions;
-using AlphaX.Parserz.Interfaces;
+﻿using AlphaX.Parserz.Interfaces;
 using AlphaX.Parserz.Resources;
 using AlphaX.Parserz.Results;
-using System;
 
 namespace AlphaX.Parserz
 {
@@ -30,7 +28,7 @@ namespace AlphaX.Parserz
                 return CreateResultState(inputState, new CharResult(Value), inputState.Index + 1);
             }
 
-            return CreateErrorState(inputState, new ParserError(inputState.Index, 
+            return CreateErrorState(inputState, new ParserError(inputState.Index,
                 string.Format(ParserMessages.UnexpectedInputError, inputState.Index, Value.ToString(), character)));
         }
     }

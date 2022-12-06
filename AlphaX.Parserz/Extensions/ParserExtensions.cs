@@ -1,8 +1,6 @@
 ﻿using AlphaX.Parserz.Interfaces;
 using AlphaX.Parserz.Results;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AlphaX.Parserz.Extensions
 {
@@ -15,7 +13,7 @@ namespace AlphaX.Parserz.Extensions
         /// <param name="parser"></param>
         /// <param name="errorMap"></param>
         /// <returns></returns>
-        public static IParser<T> MapError<T>(this IParser<T> parser, Func<IParserError, IParserError> errorMap) 
+        public static IParser<T> MapError<T>(this IParser<T> parser, Func<IParserError, IParserError> errorMap)
             where T : IParserResult
         {
             return new ErrorMappedParser<T>(parser, errorMap);
@@ -40,7 +38,7 @@ namespace AlphaX.Parserz.Extensions
         /// <param name="parser"></param>
         /// <param name="resultMap"></param>
         /// <returns>A result mapped parser.</returns>
-        public static IParser<TOut> MapResult<TIn, TOut>(this IParser<TIn> parser, Func<TIn, TOut> resultMap) 
+        public static IParser<TOut> MapResult<TIn, TOut>(this IParser<TIn> parser, Func<TIn, TOut> resultMap)
             where TIn : IParserResult
             where TOut : IParserResult
         {
@@ -77,7 +75,7 @@ namespace AlphaX.Parserz.Extensions
         /// <returns>A sequence of parser.</returns>
         public static IParser<ArrayResult> AndThen(this IParser parser, IParser nextParser)
         {
-            if(parser is SequenceOfParser seqParser)
+            if (parser is SequenceOfParser seqParser)
             {
                 seqParser.Parsers.Add(nextParser);
                 return seqParser;

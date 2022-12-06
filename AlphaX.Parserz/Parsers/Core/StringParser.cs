@@ -1,5 +1,4 @@
-﻿using AlphaX.Parserz.Extensions;
-using AlphaX.Parserz.Interfaces;
+﻿using AlphaX.Parserz.Interfaces;
 using AlphaX.Parserz.Resources;
 using AlphaX.Parserz.Results;
 using System;
@@ -21,7 +20,7 @@ namespace AlphaX.Parserz
         {
             var targetString = inputState.Input;
 
-            if (Value.Length <= targetString.Length && targetString.StartsWith(Value, MatchCase ? StringComparison.Ordinal 
+            if (Value.Length <= targetString.Length && targetString.StartsWith(Value, MatchCase ? StringComparison.Ordinal
                 : StringComparison.InvariantCultureIgnoreCase))
             {
                 return CreateResultState(inputState, new StringResult(Value), inputState.Index + Value.Length);

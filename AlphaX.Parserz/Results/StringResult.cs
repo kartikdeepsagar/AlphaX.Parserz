@@ -6,7 +6,7 @@
 
         public StringResult(string value) : base(value, ParserResultType.String)
         {
-            
+
         }
 
         public StringResult() : base()

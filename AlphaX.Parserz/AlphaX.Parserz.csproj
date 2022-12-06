@@ -7,9 +7,9 @@
     <PackageIcon>Icon.png</PackageIcon>
     <PackageIconUrl />
     <Description>A simple &amp; fast library to create parsers using the parser-combinators approach.</Description>
-    <Version>1.0.4.4</Version>
-    <AssemblyVersion>1.0.4.4</AssemblyVersion>
-    <FileVersion>1.0.4.4</FileVersion>
+    <Version>1.0.5.0</Version>
+    <AssemblyVersion>1.0.5.0</AssemblyVersion>
+    <FileVersion>1.0.5.0</FileVersion>
     <PackageId>AlphaX.Parserz</PackageId>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>

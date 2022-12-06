@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AlphaX.Parserz.Extended\AlphaX.Parserz.Extended.csproj" />
     <ProjectReference Include="..\AlphaX.Parserz\AlphaX.Parserz.csproj" />
   </ItemGroup>
 

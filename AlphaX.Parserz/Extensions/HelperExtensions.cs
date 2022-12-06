@@ -18,7 +18,7 @@ namespace AlphaX.Parserz.Extensions
         {
             string input = arrayResult.ToStringResult().Value;
 
-            if(!double.TryParse(input, out double result))
+            if (!double.TryParse(input, out double result))
                 throw new ParsingException(string.Format(ParserMessages.TypeConvertError, input, typeof(DoubleResult)));
 
             return new DoubleResult(result);

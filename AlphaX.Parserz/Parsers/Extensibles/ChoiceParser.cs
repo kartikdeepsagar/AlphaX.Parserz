@@ -15,7 +15,7 @@ namespace AlphaX.Parserz
 
         protected override IParserState ParseInput(IParserState inputState)
         {
-            for(int parserIndex = 0; parserIndex < Parsers.Count; parserIndex++)
+            for (int parserIndex = 0; parserIndex < Parsers.Count; parserIndex++)
             {
                 var state = Parsers[parserIndex].Parse(inputState);
 
@@ -23,7 +23,7 @@ namespace AlphaX.Parserz
                     return state;
             }
 
-            return CreateErrorState(inputState, new ParserError(inputState.Index, 
+            return CreateErrorState(inputState, new ParserError(inputState.Index,
                 string.Format(ParserMessages.UnexpectedInputError, inputState.Index, ParserMessages.AtleastOneParserMatch, ParserMessages.NoParserMatch)));
         }
     }

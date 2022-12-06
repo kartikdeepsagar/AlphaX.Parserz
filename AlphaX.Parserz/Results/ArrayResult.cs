@@ -12,7 +12,7 @@ namespace AlphaX.Parserz.Results
 
         public ArrayResult(IParserResult[] value) : base(value, ParserResultType.Array)
         {
-            
+
         }
 
         public ArrayResult() : base()

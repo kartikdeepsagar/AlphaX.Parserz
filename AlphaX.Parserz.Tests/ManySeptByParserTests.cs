@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using AlphaX.Parserz.Extensions;
+﻿using AlphaX.Parserz.Extensions;
+using NUnit.Framework;
 
 namespace AlphaX.Parserz.Tests
 {

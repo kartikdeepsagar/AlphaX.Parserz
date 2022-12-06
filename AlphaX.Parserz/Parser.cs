@@ -4,7 +4,6 @@ using AlphaX.Parserz.Parsers;
 using AlphaX.Parserz.Resources;
 using AlphaX.Parserz.Results;
 using System;
-using System.Globalization;
 
 namespace AlphaX.Parserz
 {
@@ -68,9 +67,9 @@ namespace AlphaX.Parserz
         /// <summary>
         /// Gets the number parser.
         /// </summary>
-        /// <param name="decimalSeperator"></param>
+        /// <param name="canParseDecimal"></param>
         /// <returns></returns>
-        public static IParser<DoubleResult> Number(string decimalSeperator = ".") => new NumberParser(decimalSeperator);
+        public static IParser<DoubleResult> Number(bool canParseDecimal = true) => new NumberParser(canParseDecimal);
         /// <summary>
         /// Gets the lazy parser.
         /// </summary>

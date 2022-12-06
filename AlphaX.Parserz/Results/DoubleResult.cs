@@ -6,7 +6,7 @@
 
         public DoubleResult(double value) : base(value, ParserResultType.Number)
         {
-            
+
         }
 
         private DoubleResult() : base()
