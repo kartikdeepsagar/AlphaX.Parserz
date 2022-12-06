@@ -10,14 +10,14 @@ namespace AlphaX.Parserz.Parsers
         public NumberParser(string decimalSeperator) :
             base(new Regex(@"^[\+\-]?[\d]*\" + decimalSeperator + @"?[\d]+", RegexOptions.Compiled)) { }
 
-        protected override DoubleResult ConvertResult(string value)
+        protected override DoubleResult ConvertResult(Match value)
         {
             try
             {
-                if (value.Length == 0 || value == null)
+                if (string.IsNullOrEmpty(value.Value))
                     return null;
 
-                return new DoubleResult(double.Parse(value));
+                return new DoubleResult(double.Parse(value.Value));
             }
             catch
             {

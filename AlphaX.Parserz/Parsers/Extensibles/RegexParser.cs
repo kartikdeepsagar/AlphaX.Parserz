@@ -22,7 +22,7 @@ namespace AlphaX.Parserz
                 return CreateErrorState(inputState, CreateError(match.Index, inputState.Input));
             }
 
-            var result = ConvertResult(match.Value);
+            var result = ConvertResult(match);
 
             if (result != null && result.IsValid)
                 return CreateResultState(inputState, result, inputState.Index + match.Length);
@@ -30,7 +30,7 @@ namespace AlphaX.Parserz
             return CreateErrorState(inputState, CreateError(match.Index, inputState.Input));
         }
 
-        protected abstract T ConvertResult(string value);
+        protected abstract T ConvertResult(Match value);
 
         protected abstract IParserError CreateError(int index, string value);
     }
