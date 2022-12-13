@@ -18,7 +18,7 @@ namespace AlphaX.Parserz
         {
             var newState = PreviousParser.Parse(inputState);
 
-            if (NextParserFunc == null)
+            if (NextParserFunc == null || newState.IsError)
                 return newState;
 
             var nextParser = NextParserFunc(newState.Result);

@@ -43,6 +43,7 @@ namespace AlphaX.Parserz
         {
             var errorState = currentState.Clone();
             errorState.Error = error;
+            errorState.Result = null;
             return errorState;
         }
 
