@@ -40,14 +40,10 @@ namespace AlphaX.Parserz.Extended
 
         private static void CreateHumanTimeSpanParser()
         {
-            var wParser = GetTimePartParser('w', (span, value) => span.Weeks = value)
-                .MapError(x => new ParserError(x.Index, "Expected a week value"));
-            var dParser = GetTimePartParser('d', (span, value) => span.Days = value)
-                .MapError(x => new ParserError(x.Index, "Expected a day value"));
-            var hParser = GetTimePartParser('h', (span, value) => span.Hours = value)
-                .MapError(x => new ParserError(x.Index, "Expected a hour value"));
-            var mParser = GetTimePartParser('m', (span, value) => span.Minutes = value)
-                .MapError(x => new ParserError(x.Index, "Expected a minute value"));
+            var wParser = GetTimePartParser('w', (span, value) => span.Weeks = value);
+            var dParser = GetTimePartParser('d', (span, value) => span.Days = value);
+            var hParser = GetTimePartParser('h', (span, value) => span.Hours = value);
+            var mParser = GetTimePartParser('m', (span, value) => span.Minutes = value);
 
             var hourMinuteParser = hParser.Next(hourParserResult =>
             {
