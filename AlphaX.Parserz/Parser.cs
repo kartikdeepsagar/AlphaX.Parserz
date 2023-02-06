@@ -65,6 +65,12 @@ namespace AlphaX.Parserz
         /// <returns></returns>
         public static IParser<StringResult> String(string value, bool matchCase = false) => new StringParser(value, matchCase);
         /// <summary>
+        /// Gets the string value parser.
+        /// </summary>
+        /// <param name="doubleQuotes">Specifies to parse double quoted string otherwise single quoted string</param>
+        /// <returns></returns>
+        public static IParser<StringResult> StringValue(bool doubleQuotes = true) => new StringValueParser(doubleQuotes);
+        /// <summary>
         /// Gets the number parser.
         /// </summary>
         /// <param name="canParseDecimal"></param>
