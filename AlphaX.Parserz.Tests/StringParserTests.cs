@@ -71,5 +71,12 @@ namespace AlphaX.Parserz.Tests
             var resultState = Parser.StringValue().Run(input);
             Assert.IsTrue(resultState.IsError);
         }
+
+        [TestCase("Hi i am alphax and i am better", "alphax")]
+        public void UntilParser_Success_Test(string input, string selector)
+        {
+            var resultState = Parser.UntilFound(selector).Run(input);
+            Assert.IsFalse(resultState.IsError);
+        }
     }
 }

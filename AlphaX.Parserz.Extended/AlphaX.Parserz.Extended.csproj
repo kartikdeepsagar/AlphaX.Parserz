@@ -9,7 +9,9 @@
     <PackageIcon>Icon.png</PackageIcon>
     <Company>AlphaX</Company>
     <Authors>AlphaX</Authors>
-    <Description>A collection of parsers built using 'AlphaX.Parserz' library. These parsers can easily fit into your development.</Description>
+    <Description>A collection of parsers built using 'AlphaX.Parserz' library. These parsers can easily fit into your development.
+
+Please provide your feedback here - https://docs.google.com/forms/d/e/1FAIpQLSdftdgKK04BuNkfDj3UllGc-ALaHyKCRMbovdCFC7kRVTKKFw/viewform?usp=sf_link</Description>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 

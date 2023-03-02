@@ -65,6 +65,13 @@ namespace AlphaX.Parserz
         /// <returns></returns>
         public static IParser<StringResult> String(string value, bool matchCase = false) => new StringParser(value, matchCase);
         /// <summary>
+        /// Gets the until parser.
+        /// </summary>
+        /// <param name="selector">Parses the input until selector is found</param>
+        /// <param name="matchCase"></param>
+        /// <returns></returns>
+        public static IParser<StringResult> UntilFound(string selector, bool matchCase = false) => new UntilFoundParser(selector, matchCase);
+        /// <summary>
         /// Gets the string value parser.
         /// </summary>
         /// <param name="doubleQuotes">Specifies to parse double quoted string otherwise single quoted string</param>
