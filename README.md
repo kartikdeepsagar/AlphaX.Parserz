@@ -182,4 +182,3 @@ var result = emailParser.Run("testuser@gmail.com");
 var email = result.Result as EmailResult;
 Console.WriteLine(JsonConvert.SerializeObject(email.Value)); // {"UserName":"testuser","Domain":"@gmail.com"}
 ```
-
