@@ -130,4 +130,56 @@ You can see that we have used an extension method i.e. **Many** in the above cod
        return new ManyParser(parser, minCount, maxCount);
  }
 ```
-// explain extensible parsers later
+Similarly, you can combine small parsers to make a more complex parser. For example, you can create a basic email (gmail/microsoft) parser as follows:
+```c#
+var @parser = AlphaX.Parserz.Parser.String("@");
+var dotParser = AlphaX.Parserz.Parser.String(".");
+var comParser = AlphaX.Parserz.Parser.String("com");
+var gmailParser = AlphaX.Parserz.Parser.String("gmail");
+var microsoftParser = AlphaX.Parserz.Parser.String("microsoft");
+
+// username parser to parse names starting with letters and then containing letters/digits
+var userNameParser = AlphaX.Parserz.Parser.Letter.Many()
+   .AndThen(Parser.LetterOrDigit.Many())
+   .MapResult(x => x.ToStringResult()); // converting to string result
+
+// domain parser for example, @gmail.com
+var domainParser = @parser
+    .AndThen(gmailParser.Or(microsoftParser))
+    .AndThen(dotParser)
+    .AndThen(comParser)
+    .MapResult(x => x.ToStringResult());
+
+var emailParser = userNameParser.AndThen(domainParser)
+     .MapResult(x => new EmailResult(new Email()
+     {
+             UserName = (string)x.Value[0].Value,
+             Domain = (string)x.Value[1].Value
+      }));
+```
+And the EmailResult class is defined as follows:
+```c#
+public class Email
+{
+        public string UserName { get; set; }
+        public string Domain { get; set; }
+}
+
+public class EmailResult : ParserResult<Email>
+{
+        // specifies the type of result
+        public static ParserResultType EmailResultType = new ParserResultType("email");
+
+        public EmailResult(Email email) : base(email, EmailResultType)
+        {
+
+        }
+}
+```
+And this is how we can use the parser
+```c#
+var result = emailParser.Run("testuser@gmail.com");
+var email = result.Result as EmailResult;
+Console.WriteLine(JsonConvert.SerializeObject(email.Value)); // {"UserName":"testuser","Domain":"@gmail.com"}
+```
+
