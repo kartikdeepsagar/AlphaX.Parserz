@@ -77,16 +77,16 @@ public class DigitParser : Parser<ByteResult>
             var targetString = inputState.Input;
 
             if (string.IsNullOrEmpty(targetString))
-                return CreateErrorState(inputState, new ParserError(inputState.Index,
+                return ParserStates.Error(inputState, new ParserError(inputState.Index,
                     string.Format(ParserMessages.UnexpectedInputError, inputState.Index, ParserMessages.Digits, targetString)));
 
             var character = targetString[0];
             if (char.IsDigit(character))
             {
-                return CreateResultState(inputState, new ByteResult(Convert.ToByte(character - '0')), inputState.Index + 1);
+                return ParserStates.Result(inputState, new ByteResult(Convert.ToByte(character - '0')), inputState.Index + 1);
             }
 
-            return CreateErrorState(inputState, new ParserError(inputState.Index, 
+            return ParserStates.Error(inputState, new ParserError(inputState.Index, 
                 string.Format(ParserMessages.UnexpectedInputError, inputState.Index, ParserMessages.Digits, targetString)));
      }
 }
