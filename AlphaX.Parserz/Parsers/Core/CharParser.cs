@@ -1,10 +1,8 @@
-﻿using AlphaX.Parserz.Interfaces;
-using AlphaX.Parserz.Resources;
-using AlphaX.Parserz.Results;
+﻿using AlphaX.Parserz.Resources;
 
 namespace AlphaX.Parserz
 {
-    public class CharParser : Parser<CharResult>
+    internal class CharParser : Parser<CharResult>
     {
         public char Value { get; }
 
@@ -18,17 +16,17 @@ namespace AlphaX.Parserz
             var targetString = inputState.Input;
 
             if (string.IsNullOrEmpty(targetString))
-                return CreateErrorState(inputState, new ParserError(inputState.Index,
+                return ParserStates.Error(inputState, new ParserError(inputState.Index,
                     string.Format(ParserMessages.UnexpectedInputError, inputState.Index, Value.ToString(), targetString)));
 
             var character = targetString[0];
 
             if (character == Value)
             {
-                return CreateResultState(inputState, new CharResult(Value), inputState.Index + 1);
+                return ParserStates.Result(inputState, new CharResult(Value), inputState.Index + 1);
             }
 
-            return CreateErrorState(inputState, new ParserError(inputState.Index,
+            return ParserStates.Error(inputState, new ParserError(inputState.Index,
                 string.Format(ParserMessages.UnexpectedInputError, inputState.Index, Value.ToString(), character)));
         }
     }

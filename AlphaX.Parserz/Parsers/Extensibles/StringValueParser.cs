@@ -1,10 +1,8 @@
-﻿using AlphaX.Parserz.Interfaces;
-using AlphaX.Parserz.Results;
-using System.Text;
+﻿using System.Text;
 
 namespace AlphaX.Parserz
 {
-    public class StringValueParser : Parser<StringResult>
+    internal class StringValueParser : Parser<StringResult>
     {
         private char _quoteChar;
 
@@ -16,7 +14,7 @@ namespace AlphaX.Parserz
         protected override IParserState ParseInput(IParserState inputState)
         {
             if (inputState.Input.Length == 0 || inputState.Input[0] != _quoteChar)
-                return CreateErrorState(inputState, new ParserError(inputState.Index, $"Unexpected input. Expected '{_quoteChar}'."));
+                return ParserStates.Error(inputState, new ParserError(inputState.Index, $"Unexpected input. Expected '{_quoteChar}'."));
 
             var input = inputState.Input;
             var strBuffer = new StringBuilder();
@@ -29,7 +27,7 @@ namespace AlphaX.Parserz
                 }
                 else if (input[index] == _quoteChar && (index == input.Length - 1 || input[index + 1] != _quoteChar))
                 {
-                    return CreateResultState(inputState, new StringResult(strBuffer.ToString()), inputState.Index + index + 1);
+                    return ParserStates.Result(inputState, new StringResult(strBuffer.ToString()), inputState.Index + index + 1);
                 }
                 else
                 {
@@ -37,7 +35,7 @@ namespace AlphaX.Parserz
                 }
             }
 
-            return CreateErrorState(inputState, new ParserError(inputState.Index, "Unexpected input. Expected a string value"));
+            return ParserStates.Error(inputState, new ParserError(inputState.Index, "Unexpected input. Expected a string value"));
         }
     }
 }

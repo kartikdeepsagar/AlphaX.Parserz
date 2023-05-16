@@ -1,10 +1,8 @@
-﻿using AlphaX.Parserz.Interfaces;
-using AlphaX.Parserz.Results;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace AlphaX.Parserz
 {
-    public class SequenceOfParser : Parser<ArrayResult>
+    internal class SequenceOfParser : Parser<ArrayResult>
     {
         internal List<IParser> Parsers { get; }
 
@@ -22,13 +20,13 @@ namespace AlphaX.Parserz
                 inputState = Parsers[parserIndex].Parse(inputState);
 
                 if (inputState.IsError)
-                    return CreateErrorState(inputState, inputState.Error);
+                    return ParserStates.Error(inputState, inputState.Error);
 
                 results.Add(inputState.Result);
             }
 
             var result = results.Count == 0 ? ArrayResult.Empty : new ArrayResult(results.ToArray());
-            return CreateResultState(inputState, result, inputState.Index);
+            return ParserStates.Result(inputState, result, inputState.Index);
         }
     }
 }

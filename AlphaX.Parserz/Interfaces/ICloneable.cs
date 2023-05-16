@@ -1,4 +1,4 @@
-﻿namespace AlphaX.Parserz.Interfaces
+﻿namespace AlphaX.Parserz
 {
     /// <summary>
     /// Interface for cloning items of type <typeparamref name="T"/>

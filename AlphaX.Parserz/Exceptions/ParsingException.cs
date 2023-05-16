@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AlphaX.Parserz.Exceptions
+namespace AlphaX.Parserz
 {
     public class ParsingException : Exception
     {

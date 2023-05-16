@@ -1,9 +1,8 @@
-﻿using AlphaX.Parserz.Interfaces;
-using System;
+﻿using System;
 
 namespace AlphaX.Parserz
 {
-    public class ResultMappedParser<TIn, TOut> : Parser<TOut>
+    internal class ResultMappedParser<TIn, TOut> : Parser<TOut>
         where TOut : IParserResult
         where TIn : IParserResult
     {
@@ -22,7 +21,7 @@ namespace AlphaX.Parserz
 
             if (!newState.IsError)
             {
-                return CreateResultState(newState, ResultMap((TIn)newState.Result), newState.Index);
+                return ParserStates.Result(newState, ResultMap((TIn)newState.Result), newState.Index);
             }
 
             return newState;

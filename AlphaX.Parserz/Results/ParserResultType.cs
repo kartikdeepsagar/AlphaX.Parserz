@@ -7,6 +7,7 @@
         public static ParserResultType Boolean = new ParserResultType("Boolean");
         public static ParserResultType Array = new ParserResultType("Array");
         public static ParserResultType Char = new ParserResultType("Char");
+        public static ParserResultType Object = new ParserResultType("Object");
 
         public string Name { get; }
 

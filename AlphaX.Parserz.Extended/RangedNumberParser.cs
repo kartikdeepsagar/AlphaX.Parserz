@@ -1,7 +1,5 @@
-﻿using AlphaX.Parserz.Extended.Resources;
-using AlphaX.Parserz.Interfaces;
-using AlphaX.Parserz.Results;
-using System;
+﻿using System;
+using AlphaX.Parserz.Extended.Resources;
 
 namespace AlphaX.Parserz.Extended
 {
@@ -31,7 +29,7 @@ namespace AlphaX.Parserz.Extended
                 var value = (double)state.Result.Value;
 
                 if (value < Minimum || value > Maximum)
-                    return CreateErrorState(inputState, new ParserError(inputState.Index,
+                    return ParserStates.Error(inputState, new ParserError(inputState.Index,
                    string.Format(ParserMessages.UnexpectedInputError, inputState.Index, $"number from {Minimum} to {Maximum}", value)));
             }
 

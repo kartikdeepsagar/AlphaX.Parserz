@@ -1,9 +1,8 @@
-﻿using AlphaX.Parserz.Interfaces;
-using System;
+﻿using System;
 
 namespace AlphaX.Parserz
 {
-    public class ChainedParser : Parser<IParserResult>
+    internal class ChainedParser : Parser<IParserResult>
     {
         public IParser PreviousParser { get; }
         public Func<IParserResult, IParser> NextParserFunc { get; }

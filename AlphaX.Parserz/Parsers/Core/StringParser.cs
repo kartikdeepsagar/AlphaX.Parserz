@@ -1,11 +1,9 @@
-﻿using AlphaX.Parserz.Interfaces;
+﻿using System;
 using AlphaX.Parserz.Resources;
-using AlphaX.Parserz.Results;
-using System;
 
 namespace AlphaX.Parserz
 {
-    public class StringParser : Parser<StringResult>
+    internal class StringParser : Parser<StringResult>
     {
         public string Value { get; }
         public bool MatchCase { get; }
@@ -23,10 +21,10 @@ namespace AlphaX.Parserz
             if (Value.Length <= targetString.Length && targetString.StartsWith(Value, MatchCase ? StringComparison.Ordinal
                 : StringComparison.InvariantCultureIgnoreCase))
             {
-                return CreateResultState(inputState, new StringResult(Value), inputState.Index + Value.Length);
+                return ParserStates.Result(inputState, new StringResult(Value), inputState.Index + Value.Length);
             }
 
-            return CreateErrorState(inputState, new ParserError(inputState.Index,
+            return ParserStates.Error(inputState, new ParserError(inputState.Index,
                 string.Format(ParserMessages.UnexpectedInputError, inputState.Index, Value, targetString)));
         }
     }

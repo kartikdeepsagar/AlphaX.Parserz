@@ -1,9 +1,8 @@
-﻿using AlphaX.Parserz.Interfaces;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AlphaX.Parserz.Results
+namespace AlphaX.Parserz
 {
     public class ArrayResult : ParserResult<IParserResult[]>, IEnumerable<IParserResult>
     {

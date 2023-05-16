@@ -1,7 +1,4 @@
 ﻿using System;
-using AlphaX.Parserz.Extensions;
-using AlphaX.Parserz.Interfaces;
-using AlphaX.Parserz.Results;
 
 namespace AlphaX.Parserz.Extended
 {
@@ -30,7 +27,8 @@ namespace AlphaX.Parserz.Extended
         private static IParser<HumanTimeSpanParserResult> GetTimePartParser(char symbol, Action<HumanTimeSpan, double> valueSetter)
         {
             return _numberParser.AndThen(Parser.Char(symbol))
-                .MapResult(x => {
+                .MapResult(x =>
+                {
                     var span = new HumanTimeSpan();
                     valueSetter(span, (double)x.Value[0].Value);
                     var result = new HumanTimeSpanParserResult(span);
@@ -48,7 +46,7 @@ namespace AlphaX.Parserz.Extended
             var hourMinuteParser = hParser.Next(hourParserResult =>
             {
                 return Parser.WhiteSpace.AndThen(mParser).MapResult(x => x.Value[1]).Many(0, 1)
-                .MapResult(x => 
+                .MapResult(x =>
                 {
                     if (x.Value.Length > 0)
                     {

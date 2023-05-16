@@ -1,6 +1,4 @@
-﻿using AlphaX.Parserz.Results;
-
-namespace AlphaX.Parserz.Extended
+﻿namespace AlphaX.Parserz.Extended
 {
     public class HumanTimeSpanParserResult : ParserResult<HumanTimeSpan>
     {

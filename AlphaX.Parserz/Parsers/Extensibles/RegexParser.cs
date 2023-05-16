@@ -1,5 +1,4 @@
-﻿using AlphaX.Parserz.Interfaces;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace AlphaX.Parserz
 {
@@ -19,15 +18,15 @@ namespace AlphaX.Parserz
 
             if (!match.Success)
             {
-                return CreateErrorState(inputState, CreateError(match.Index, inputState.Input));
+                return ParserStates.Error(inputState, CreateError(match.Index, inputState.Input));
             }
 
             var result = ConvertResult(match);
 
             if (result != null && result.IsValid)
-                return CreateResultState(inputState, result, inputState.Index + match.Length);
+                return ParserStates.Result(inputState, result, inputState.Index + match.Length);
 
-            return CreateErrorState(inputState, CreateError(match.Index, inputState.Input));
+            return ParserStates.Error(inputState, CreateError(match.Index, inputState.Input));
         }
 
         protected abstract T ConvertResult(Match value);

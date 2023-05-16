@@ -9,9 +9,9 @@
     <Description>A simple &amp; fast library to create parsers using the parser-combinators approach.
 
 Please provide your feedback or suggestions here - https://docs.google.com/forms/d/e/1FAIpQLScIt6dT7t1pxTjeUO5iHYagSPs-f6VPuWNtnCsLl32qYJf5Ig/viewform?usp=sf_link</Description>
-    <Version>1.0.7.0</Version>
-    <AssemblyVersion>1.0.7.0</AssemblyVersion>
-    <FileVersion>1.0.7.0</FileVersion>
+    <Version>2.0.0</Version>
+    <AssemblyVersion>2.0.0</AssemblyVersion>
+    <FileVersion>2.0.0</FileVersion>
     <PackageId>AlphaX.Parserz</PackageId>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>

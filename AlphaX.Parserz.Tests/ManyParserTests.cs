@@ -9,7 +9,7 @@ namespace AlphaX.Parserz.Tests
         [TestCase("32423")]
         public void ManyParserWithMinCount_SuccessTest(string input)
         {
-            var manyParser = new ManyParser(Parser.Digit, 2);
+            var manyParser = Parser.Digit.Many(2);
             var result = manyParser.Run(input);
             Assert.IsFalse(result.IsError);
         }
@@ -20,7 +20,7 @@ namespace AlphaX.Parserz.Tests
         [TestCase("782")]
         public void ManyParserWithMinCount_FailureTest(string input)
         {
-            var manyParser = new ManyParser(Parser.Digit, 4);
+            var manyParser = Parser.Digit.Many(4);
             var result = manyParser.Run(input);
             Assert.IsTrue(result.IsError);
         }
@@ -30,7 +30,7 @@ namespace AlphaX.Parserz.Tests
         [TestCase("98")]
         public void ManyParserWithMinMaxCount_SuccessTest(string input)
         {
-            var manyParser = new ManyParser(Parser.Digit, 2, 4);
+            var manyParser = Parser.Digit.Many(2, 4);
             var result = manyParser.Run(input);
             Assert.IsFalse(result.IsError);
         }
@@ -40,7 +40,7 @@ namespace AlphaX.Parserz.Tests
         [TestCase("22322")]
         public void ManyParserWithMinMaxCount_FailureTest(string input)
         {
-            var manyParser = new ManyParser(Parser.Digit, 2, 4);
+            var manyParser = Parser.Digit.Many(2, 4);
             var result = manyParser.Run(input);
             Assert.IsTrue(result.IsError);
         }

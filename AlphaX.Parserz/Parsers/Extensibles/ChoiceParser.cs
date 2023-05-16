@@ -1,10 +1,9 @@
-﻿using AlphaX.Parserz.Interfaces;
+﻿using System.Collections.Generic;
 using AlphaX.Parserz.Resources;
-using System.Collections.Generic;
 
 namespace AlphaX.Parserz
 {
-    public class ChoiceParser : Parser<IParserResult>
+    internal class ChoiceParser : Parser<IParserResult>
     {
         internal List<IParser> Parsers { get; }
 
@@ -27,7 +26,7 @@ namespace AlphaX.Parserz
             if (state == null)
                 state = inputState;
 
-            return CreateErrorState(inputState, new ParserError(state.Index,
+            return ParserStates.Error(inputState, new ParserError(state.Index,
                 string.Format(ParserMessages.UnexpectedInputError, state.Index, ParserMessages.AtleastOneParserMatch, ParserMessages.NoParserMatch)));
         }
     }

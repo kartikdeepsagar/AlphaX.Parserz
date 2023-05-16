@@ -1,11 +1,9 @@
-﻿using AlphaX.Parserz.Interfaces;
+﻿using System.Collections.Generic;
 using AlphaX.Parserz.Resources;
-using AlphaX.Parserz.Results;
-using System.Collections.Generic;
 
 namespace AlphaX.Parserz
 {
-    public class ManyParser : Parser<ArrayResult>
+    internal class ManyParser : Parser<ArrayResult>
     {
         public int MinCount { get; }
         public int MaxCount { get; }
@@ -41,7 +39,7 @@ namespace AlphaX.Parserz
             if (results.Count < MinCount)
             {
                 errorState = errorState == null ? inputState : errorState;
-                return CreateErrorState(errorState, new ParserError(errorState.Index, string.Format(ParserMessages.UnexpectedInputError, errorState.Index,
+                return ParserStates.Error(errorState, new ParserError(errorState.Index, string.Format(ParserMessages.UnexpectedInputError, errorState.Index,
                     string.Format(ParserMessages.AtleastCount, MinCount, MinCount > 1 ? "s" : string.Empty),
                     string.Format(ParserMessages.GotCount, results.Count, results.Count > 1 ? "s" : string.Empty))));
             }
@@ -49,12 +47,12 @@ namespace AlphaX.Parserz
             if (MaxCount != -1 && results.Count > MaxCount)
             {
                 errorState = errorState == null ? inputState : errorState;
-                return CreateErrorState(errorState, new ParserError(errorState.Index, string.Format(ParserMessages.UnexpectedInputError, errorState.Index,
+                return ParserStates.Error(errorState, new ParserError(errorState.Index, string.Format(ParserMessages.UnexpectedInputError, errorState.Index,
                     string.Format(ParserMessages.AtmostCount, MaxCount, MaxCount > 1 ? "s" : string.Empty),
                     string.Format(ParserMessages.GotCount, results.Count, results.Count > 1 ? "s" : string.Empty))));
             }
 
-            return CreateResultState(inputState, result, inputState.Index);
+            return ParserStates.Result(inputState, result, inputState.Index);
         }
     }
 }

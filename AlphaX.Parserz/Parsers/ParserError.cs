@@ -1,6 +1,4 @@
-﻿using AlphaX.Parserz.Interfaces;
-
-namespace AlphaX.Parserz
+﻿namespace AlphaX.Parserz
 {
     public class ParserError : IParserError
     {

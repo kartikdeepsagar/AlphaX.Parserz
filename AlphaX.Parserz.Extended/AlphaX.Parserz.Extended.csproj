@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.0.7.0</Version>
+    <Version>2.0.0</Version>
     <PackageId>AlphaX.Parserz.Extended</PackageId>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageTags>alpha;parse;parserz;.net;parser combinator;alphax;parsing;parser;alphax.parserz</PackageTags>
@@ -13,8 +13,8 @@
 
 Please provide your feedback or suggestions here - https://docs.google.com/forms/d/e/1FAIpQLSdftdgKK04BuNkfDj3UllGc-ALaHyKCRMbovdCFC7kRVTKKFw/viewform?usp=sf_link</Description>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <AssemblyVersion>1.0.7.0</AssemblyVersion>
-    <FileVersion>1.0.7.0</FileVersion>
+    <AssemblyVersion>2.0.0</AssemblyVersion>
+    <FileVersion>2.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -30,7 +30,7 @@ Please provide your feedback or suggestions here - https://docs.google.com/forms
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AlphaX.Parserz\AlphaX.Parserz.csproj" />
+    <PackageReference Include="AlphaX.Parserz" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>

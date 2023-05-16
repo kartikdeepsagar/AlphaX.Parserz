@@ -1,8 +1,8 @@
-﻿using AlphaX.Parserz.Interfaces;
+﻿using System.Reflection;
 
 namespace AlphaX.Parserz
 {
-    public class ParserState : IParserState
+    internal class ParserState : IParserState
     {
         public int Index { get; set; }
         public string ActualInput { get; set; }

@@ -1,7 +1,6 @@
-﻿using AlphaX.Parserz.Interfaces;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
-namespace AlphaX.Parserz.Results
+namespace AlphaX.Parserz
 {
     public abstract class ParserResult<T> : IParserResult<T>
     {

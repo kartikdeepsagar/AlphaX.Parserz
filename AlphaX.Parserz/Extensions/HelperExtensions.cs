@@ -1,11 +1,8 @@
-﻿using AlphaX.Parserz.Exceptions;
-using AlphaX.Parserz.Interfaces;
-using AlphaX.Parserz.Resources;
-using AlphaX.Parserz.Results;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
+using AlphaX.Parserz.Resources;
 
-namespace AlphaX.Parserz.Extensions
+namespace AlphaX.Parserz
 {
     public static class HelperExtensions
     {

@@ -1,8 +1,6 @@
-﻿using AlphaX.Parserz.Interfaces;
-using AlphaX.Parserz.Results;
-using System;
+﻿using System;
 
-namespace AlphaX.Parserz.Extensions
+namespace AlphaX.Parserz
 {
     public static class ParserExtensions
     {

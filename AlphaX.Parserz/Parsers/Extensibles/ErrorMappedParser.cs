@@ -1,9 +1,8 @@
-﻿using AlphaX.Parserz.Interfaces;
-using System;
+﻿using System;
 
 namespace AlphaX.Parserz
 {
-    public class ErrorMappedParser<T> : Parser<T> where T : IParserResult
+    internal class ErrorMappedParser<T> : Parser<T> where T : IParserResult
     {
         public IParser Parser { get; }
         public Func<IParserError, IParserError> ErrorMap { get; }
@@ -20,7 +19,7 @@ namespace AlphaX.Parserz
 
             if (newState.IsError)
             {
-                return CreateErrorState(newState, ErrorMap(newState.Error));
+                return ParserStates.Error(newState, ErrorMap(newState.Error));
             }
 
             return newState;

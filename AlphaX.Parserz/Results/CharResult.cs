@@ -1,4 +1,4 @@
-﻿namespace AlphaX.Parserz.Results
+﻿namespace AlphaX.Parserz
 {
     public class CharResult : ParserResult<char>
     {

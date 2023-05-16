@@ -1,12 +1,10 @@
-﻿using AlphaX.Parserz.Interfaces;
-using AlphaX.Parserz.Resources;
-using AlphaX.Parserz.Results;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Threading;
+using AlphaX.Parserz.Resources;
 
 namespace AlphaX.Parserz.Parsers
 {
-    public class NumberParser : RegexParser<DoubleResult>
+    internal class NumberParser : RegexParser<DoubleResult>
     {
         public NumberParser(bool canParseDecimal = true) :
             base(GetRegex(canParseDecimal))

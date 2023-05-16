@@ -1,4 +1,4 @@
-﻿namespace AlphaX.Parserz.Interfaces
+﻿namespace AlphaX.Parserz
 {
     /// <summary>
     /// Interface that represents a parser state.

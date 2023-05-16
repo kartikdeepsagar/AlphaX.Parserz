@@ -1,9 +1,8 @@
-﻿using AlphaX.Parserz.Interfaces;
-using System;
+﻿using System;
 
 namespace AlphaX.Parserz
 {
-    public class LazyParser : Parser<IParserResult>
+    internal class LazyParser : Parser<IParserResult>
     {
         private Lazy<IParser> _parser;
 
