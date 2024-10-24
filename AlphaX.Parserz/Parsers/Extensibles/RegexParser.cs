@@ -6,9 +6,10 @@ namespace AlphaX.Parserz
     {
         public Regex Regex { get; }
 
-        public RegexParser(Regex regex)
+        public RegexParser(Regex regex, bool allowTrace)
         {
             Regex = regex;
+            AllowTrace = allowTrace;
         }
 
         protected override IParserState ParseInput(IParserState inputState)

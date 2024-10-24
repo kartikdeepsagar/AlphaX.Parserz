@@ -9,11 +9,12 @@ namespace AlphaX.Parserz
         public int MaxCount { get; }
         public IParser Parser { get; }
 
-        public ManyParser(IParser parser, int minCount = 0, int maxCount = -1)
+        public ManyParser(IParser parser, int minCount, int maxCount, bool allowTrace)
         {
             Parser = parser;
             MinCount = minCount;
             MaxCount = maxCount;
+            AllowTrace = allowTrace;
         }
 
         protected override IParserState ParseInput(IParserState inputState)

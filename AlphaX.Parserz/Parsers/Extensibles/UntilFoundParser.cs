@@ -8,13 +8,14 @@ namespace AlphaX.Parserz
         private string _selector;
         private bool _matchCase;
 
-        public UntilFoundParser(string selector, bool matchCase = false)
+        public UntilFoundParser(string selector, bool matchCase, bool allowTrace)
         {
             if (selector == null)
                 throw new ArgumentNullException(nameof(selector));
 
             _selector = selector;
             _matchCase = matchCase;
+            AllowTrace = allowTrace;
         }
 
         protected override IParserState ParseInput(IParserState inputState)

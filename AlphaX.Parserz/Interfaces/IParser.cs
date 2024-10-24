@@ -1,4 +1,6 @@
-﻿namespace AlphaX.Parserz
+﻿using AlphaX.Parserz.Tracing;
+
+namespace AlphaX.Parserz
 {
     /// <summary>
     /// Interface that represents a parser.

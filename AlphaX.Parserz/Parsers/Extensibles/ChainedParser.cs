@@ -7,10 +7,11 @@ namespace AlphaX.Parserz
         public IParser PreviousParser { get; }
         public Func<IParserResult, IParser> NextParserFunc { get; }
 
-        public ChainedParser(IParser previousParser, Func<IParserResult, IParser> nextParserFunc)
+        public ChainedParser(IParser previousParser, Func<IParserResult, IParser> nextParserFunc, bool allowTrace)
         {
             PreviousParser = previousParser;
             NextParserFunc = nextParserFunc;
+            AllowTrace = allowTrace;       
         }
 
         protected override IParserState ParseInput(IParserState inputState)

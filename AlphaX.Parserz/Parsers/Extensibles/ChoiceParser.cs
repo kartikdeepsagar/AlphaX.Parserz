@@ -7,9 +7,10 @@ namespace AlphaX.Parserz
     {
         internal List<IParser> Parsers { get; }
 
-        public ChoiceParser(params IParser[] parsers)
+        public ChoiceParser(IParser[] parsers, bool allowTrace)
         {
             Parsers = new List<IParser>(parsers);
+            AllowTrace = allowTrace;
         }
 
         protected override IParserState ParseInput(IParserState inputState)

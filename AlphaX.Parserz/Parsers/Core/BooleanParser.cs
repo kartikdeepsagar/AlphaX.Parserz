@@ -8,6 +8,11 @@ namespace AlphaX.Parserz
         private const string TRUE = "true";
         private const string FALSE = "false";
 
+        public BooleanParser()
+        {
+            AllowTrace = true;
+        }
+
         protected override IParserState ParseInput(IParserState inputState)
         {
             var targetString = inputState.Input;

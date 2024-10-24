@@ -4,6 +4,11 @@ namespace AlphaX.Parserz
 {
     internal class EndOfInputParser : Parser<IParserResult>
     {
+        public EndOfInputParser()
+        {
+            AllowTrace = true;
+        }
+
         protected override IParserState ParseInput(IParserState inputState)
         {
             var targetString = inputState.Input;

@@ -6,9 +6,10 @@ namespace AlphaX.Parserz
     {
         internal List<IParser> Parsers { get; }
 
-        public SequenceOfParser(params IParser[] parsers)
+        public SequenceOfParser(IParser[] parsers, bool allowTrace)
         {
             Parsers = new List<IParser>(parsers);
+            AllowTrace = allowTrace;
         }
 
         protected override IParserState ParseInput(IParserState inputState)

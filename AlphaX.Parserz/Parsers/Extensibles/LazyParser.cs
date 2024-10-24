@@ -6,9 +6,10 @@ namespace AlphaX.Parserz
     {
         private Lazy<IParser> _parser;
 
-        public LazyParser(Func<IParser> parser)
+        public LazyParser(Func<IParser> parser, bool allowTrace)
         {
             _parser = new Lazy<IParser>(parser);
+            AllowTrace = allowTrace;
         }
 
         protected override IParserState ParseInput(IParserState inputState)

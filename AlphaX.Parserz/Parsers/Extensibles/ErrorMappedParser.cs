@@ -7,10 +7,11 @@ namespace AlphaX.Parserz
         public IParser Parser { get; }
         public Func<IParserError, IParserError> ErrorMap { get; }
 
-        public ErrorMappedParser(IParser parser, Func<IParserError, IParserError> errorMap)
+        public ErrorMappedParser(IParser parser, Func<IParserError, IParserError> errorMap, bool allowTrace)
         {
             Parser = parser;
             ErrorMap = errorMap;
+            AllowTrace = allowTrace;
         }
 
         protected override IParserState ParseInput(IParserState inputState)

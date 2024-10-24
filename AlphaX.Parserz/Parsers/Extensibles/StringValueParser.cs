@@ -6,9 +6,10 @@ namespace AlphaX.Parserz
     {
         private char _quoteChar;
 
-        public StringValueParser(bool doubleQuotes = true)
+        public StringValueParser(bool doubleQuotes, bool allowTrace)
         {
             _quoteChar = doubleQuotes ? '"' : '\'';
+            AllowTrace = allowTrace;
         }
 
         protected override IParserState ParseInput(IParserState inputState)

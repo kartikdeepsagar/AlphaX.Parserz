@@ -4,6 +4,11 @@ namespace AlphaX.Parserz
 {
     internal class DigitParser : Parser<DoubleResult>
     {
+        public DigitParser()
+        {
+            AllowTrace = true;
+        }
+
         protected override IParserState ParseInput(IParserState inputState)
         {
             var targetString = inputState.Input;

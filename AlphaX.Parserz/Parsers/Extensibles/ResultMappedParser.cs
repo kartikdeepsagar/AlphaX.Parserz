@@ -9,10 +9,11 @@ namespace AlphaX.Parserz
         public IParser Parser { get; }
         public Func<TIn, TOut> ResultMap { get; set; }
 
-        public ResultMappedParser(IParser parser, Func<TIn, TOut> resultMap)
+        public ResultMappedParser(IParser parser, Func<TIn, TOut> resultMap, bool allowTrace)
         {
             Parser = parser;
             ResultMap = resultMap;
+            AllowTrace = allowTrace;
         }
 
         protected override IParserState ParseInput(IParserState inputState)

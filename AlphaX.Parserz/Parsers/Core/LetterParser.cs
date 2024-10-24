@@ -16,6 +16,7 @@ namespace AlphaX.Parserz
         public LetterParser(ParseMode mode = ParseMode.Both)
         {
             _mode = mode;
+            AllowTrace = true;
         }
 
         protected override IParserState ParseInput(IParserState inputState)

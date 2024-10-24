@@ -9,6 +9,7 @@ namespace AlphaX.Parserz
         public CharParser(char value)
         {
             Value = value;
+            AllowTrace = true;
         }
 
         protected override IParserState ParseInput(IParserState inputState)
@@ -28,6 +29,11 @@ namespace AlphaX.Parserz
 
             return ParserStates.Error(inputState, new ParserError(inputState.Index,
                 string.Format(ParserMessages.UnexpectedInputError, inputState.Index, Value.ToString(), character)));
+        }
+
+        public override string ToString()
+        {
+            return $"{nameof(CharParser)}('{Value}')";
         }
     }
 }

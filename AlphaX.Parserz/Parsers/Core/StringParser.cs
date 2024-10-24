@@ -12,6 +12,7 @@ namespace AlphaX.Parserz
         {
             Value = value;
             MatchCase = matchCase;
+            AllowTrace = true;
         }
 
         protected override IParserState ParseInput(IParserState inputState)
@@ -26,6 +27,11 @@ namespace AlphaX.Parserz
 
             return ParserStates.Error(inputState, new ParserError(inputState.Index,
                 string.Format(ParserMessages.UnexpectedInputError, inputState.Index, Value, targetString)));
+        }
+
+        public override string ToString()
+        {
+            return $"{nameof(StringParser)}(\"{Value}\")";
         }
     }
 }

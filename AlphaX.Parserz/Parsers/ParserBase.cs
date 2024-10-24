@@ -1,4 +1,6 @@
-﻿namespace AlphaX.Parserz
+﻿using AlphaX.Parserz.Tracing;
+
+namespace AlphaX.Parserz
 {
     /// <summary>
     /// Class that represents a parser of type <typeparamref name="T"/>
@@ -6,12 +8,33 @@
     /// <typeparam name="T"></typeparam>
     public abstract class Parser<T> : IParser<T> where T : IParserResult
     {
+        internal bool AllowTrace { get; set; }
+
+        protected Parser()
+        {
+            AllowTrace = false;
+        }
+
         public IParserState Parse(IParserState inputState)
         {
-            if (inputState.IsError)
-                return inputState;
+            if (ParserTracer.Enabled && AllowTrace)
+            {
+                ParserTracer.Trace(this, inputState, false);
+            }
 
-            return ParseInput(inputState);
+            if (inputState.IsError)
+            {
+                return inputState;
+            }
+
+            IParserState resultState = ParseInput(inputState);
+
+            if (ParserTracer.Enabled && AllowTrace)
+            {
+                ParserTracer.Trace(this, resultState, true);
+            }
+
+            return resultState;
         }
 
         public IParserState Run(string input)
@@ -30,5 +53,10 @@
         /// <param name="inputState">The input state</param>
         /// <returns></returns>
         protected abstract IParserState ParseInput(IParserState inputState);
+
+        public override string ToString()
+        {
+            return GetType().Name;
+        }
     }
 }

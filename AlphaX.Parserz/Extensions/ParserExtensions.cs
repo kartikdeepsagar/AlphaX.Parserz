@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace AlphaX.Parserz
 {
@@ -10,11 +11,12 @@ namespace AlphaX.Parserz
         /// <typeparam name="T"></typeparam>
         /// <param name="parser"></param>
         /// <param name="errorMap"></param>
+        /// <param name="allowTrace"></param>
         /// <returns></returns>
-        public static IParser<T> MapError<T>(this IParser<T> parser, Func<IParserError, IParserError> errorMap)
+        public static IParser<T> MapError<T>(this IParser<T> parser, Func<IParserError, IParserError> errorMap, bool allowTrace = false)
             where T : IParserResult
         {
-            return new ErrorMappedParser<T>(parser, errorMap);
+            return new ErrorMappedParser<T>(parser, errorMap, allowTrace);
         }
 
         /// <summary>
@@ -22,10 +24,11 @@ namespace AlphaX.Parserz
         /// </summary>
         /// <param name="parser"></param>
         /// <param name="errorMap"></param>
+        /// <param name="allowTrace"></param>
         /// <returns></returns>
-        public static IParser MapError(this IParser parser, Func<IParserError, IParserError> errorMap)
+        public static IParser MapError(this IParser parser, Func<IParserError, IParserError> errorMap, bool allowTrace = false)
         {
-            return new ErrorMappedParser<IParserResult>(parser, errorMap);
+            return new ErrorMappedParser<IParserResult>(parser, errorMap, allowTrace);
         }
 
         /// <summary>
@@ -35,12 +38,13 @@ namespace AlphaX.Parserz
         /// <typeparam name="TOut"></typeparam>
         /// <param name="parser"></param>
         /// <param name="resultMap"></param>
+        /// <param name="allowTrace"></param>
         /// <returns>A result mapped parser.</returns>
-        public static IParser<TOut> MapResult<TIn, TOut>(this IParser<TIn> parser, Func<TIn, TOut> resultMap)
+        public static IParser<TOut> MapResult<TIn, TOut>(this IParser<TIn> parser, Func<TIn, TOut> resultMap, bool allowTrace = false)
             where TIn : IParserResult
             where TOut : IParserResult
         {
-            return new ResultMappedParser<TIn, TOut>(parser, resultMap);
+            return new ResultMappedParser<TIn, TOut>(parser, resultMap, allowTrace);
         }
 
         /// <summary>
@@ -48,10 +52,11 @@ namespace AlphaX.Parserz
         /// </summary>
         /// <param name="parser"></param>
         /// <param name="resultMap"></param>
+        /// <param name="allowTrace"></param>
         /// <returns>An error mapped parser.</returns>
-        public static IParser MapResult(this IParser parser, Func<IParserResult, IParserResult> resultMap)
+        public static IParser MapResult(this IParser parser, Func<IParserResult, IParserResult> resultMap, bool allowTrace = false)
         {
-            return new ResultMappedParser<IParserResult, IParserResult>(parser, resultMap);
+            return new ResultMappedParser<IParserResult, IParserResult>(parser, resultMap, allowTrace);
         }
 
         /// <summary>
@@ -59,10 +64,11 @@ namespace AlphaX.Parserz
         /// </summary>
         /// <param name="previousParser"></param>
         /// <param name="nextParserFunc"></param>
+        /// <param name="allowTrace"></param>
         /// <returns>A chained parser.</returns>
-        public static IParser Next(this IParser previousParser, Func<IParserResult, IParser> nextParserFunc)
+        public static IParser Next(this IParser previousParser, Func<IParserResult, IParser> nextParserFunc, bool allowTrace = false)
         {
-            return new ChainedParser(previousParser, nextParserFunc);
+            return new ChainedParser(previousParser, nextParserFunc, allowTrace);
         }
 
         /// <summary>
@@ -70,8 +76,9 @@ namespace AlphaX.Parserz
         /// </summary>
         /// <param name="parser"></param>
         /// <param name="nextParser"></param>
+        /// <param name="allowTrace"></param>
         /// <returns>A sequence of parser.</returns>
-        public static IParser<ArrayResult> AndThen(this IParser parser, IParser nextParser)
+        public static IParser<ArrayResult> AndThen(this IParser parser, IParser nextParser, bool allowTrace = false)
         {
             if (parser is SequenceOfParser seqParser)
             {
@@ -79,7 +86,7 @@ namespace AlphaX.Parserz
                 return seqParser;
             }
 
-            return new SequenceOfParser(parser, nextParser);
+            return new SequenceOfParser(new IParser[] { parser, nextParser }, allowTrace);
         }
 
         /// <summary>
@@ -87,8 +94,9 @@ namespace AlphaX.Parserz
         /// </summary>
         /// <param name="parser"></param>
         /// <param name="nextParser"></param>
+        /// <param name="allowTrace"></param>
         /// <returns>A choice parser.</returns>
-        public static IParser<IParserResult> Or(this IParser parser, IParser nextParser)
+        public static IParser<IParserResult> Or(this IParser parser, IParser nextParser, bool allowTrace = false)
         {
             if (parser is ChoiceParser choiceParser)
             {
@@ -96,7 +104,7 @@ namespace AlphaX.Parserz
                 return choiceParser;
             }
 
-            return new ChoiceParser(parser, nextParser);
+            return new ChoiceParser(new IParser[] { parser, nextParser }, allowTrace);
         }
 
         /// <summary>
@@ -106,10 +114,11 @@ namespace AlphaX.Parserz
         /// <param name="parser"></param>
         /// <param name="minCount">Minimum number of times that the parser should successfully run</param>
         /// <param name="maxCount">Maximum number of times that the parser should successfully run. Note: Skips this check if value is -1.</param>
+        /// <param name="allowTrace"></param>
         /// <returns>A many parser</returns>
-        public static IParser<ArrayResult> Many(this IParser parser, int minCount = 0, int maxCount = -1)
+        public static IParser<ArrayResult> Many(this IParser parser, int minCount = 0, int maxCount = -1, bool allowTrace = false)
         {
-            return new ManyParser(parser, minCount, maxCount);
+            return new ManyParser(parser, minCount, maxCount, allowTrace);
         }
 
         /// <summary>
@@ -120,10 +129,11 @@ namespace AlphaX.Parserz
         /// <param name="septByParser"></param>
         /// <param name="minCount">Minimum number of times that the parser should successfully run</param>
         /// <param name="maxCount">Maximum number of times that the parser should successfully run. Note: Skips this check if value is -1.</param>
+        /// <param name="allowTrace"></param>
         /// <returns>A many parser</returns>
-        public static IParser<ArrayResult> ManySeptBy(this IParser parser, IParser septByParser, int minCount = 0, int maxCount = -1)
+        public static IParser<ArrayResult> ManySeptBy(this IParser parser, IParser septByParser, int minCount = 0, int maxCount = -1, bool allowTrace = false)
         {
-            return new ManySeptByParser(parser, septByParser, minCount, maxCount);
+            return new ManySeptByParser(parser, septByParser, minCount, maxCount, allowTrace);
         }
 
         /// <summary>

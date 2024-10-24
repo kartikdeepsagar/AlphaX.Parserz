@@ -4,9 +4,10 @@
     {
         private IParserResult _result;
 
-        public ResultParser(IParserResult result)
+        public ResultParser(IParserResult result, bool allowTrace)
         {
             _result = result;
+            AllowTrace = allowTrace;
         }
 
         protected override IParserState ParseInput(IParserState inputState)
