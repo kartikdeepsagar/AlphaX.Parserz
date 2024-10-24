@@ -76,48 +76,54 @@ namespace AlphaX.Parserz
         /// </summary>
         /// <param name="selector">Parses the input until selector is found</param>
         /// <param name="matchCase"></param>
+        /// <param name="allowTrace"></param>
         /// <returns></returns>
-        public static IParser<StringResult> UntilFound(string selector, bool matchCase = false) => new UntilFoundParser(selector, matchCase);
+        public static IParser<StringResult> UntilFound(string selector, bool matchCase = false, bool allowTrace = false) => new UntilFoundParser(selector, matchCase, allowTrace);
 
         /// <summary>
         /// Gets the string value parser.
         /// </summary>
         /// <param name="doubleQuotes">Specifies to parse double quoted string otherwise single quoted string</param>
+        /// <param name="allowTrace"></param>
         /// <returns></returns>
-        public static IParser<StringResult> StringValue(bool doubleQuotes = true) => new StringValueParser(doubleQuotes);
+        public static IParser<StringResult> StringValue(bool doubleQuotes = true, bool allowTrace = false) => new StringValueParser(doubleQuotes, allowTrace);
 
         /// <summary>
         /// Gets the number parser.
         /// </summary>
         /// <param name="canParseDecimal"></param>
+        /// <param name="allowTrace"></param>
         /// <returns></returns>
-        public static IParser<DoubleResult> Number(bool canParseDecimal = true) => new NumberParser(canParseDecimal);
+        public static IParser<DoubleResult> Number(bool canParseDecimal = true, bool allowTrace = false) => new NumberParser(canParseDecimal, allowTrace);
 
         /// <summary>
         /// Gets the lazy parser.
         /// </summary>
         /// <param name="parser"></param>
+        /// <param name="allowTrace"></param>
         /// <returns></returns>
-        public static IParser Lazy(Func<IParser> parser) => new LazyParser(parser);
+        public static IParser Lazy(Func<IParser> parser, bool allowTrace = false) => new LazyParser(parser, allowTrace);
 
         /// <summary>
         /// Gets the parser which acts as a proxy parser to return a result.
         /// </summary>
         /// <param name="result"></param>
+        /// <param name="allowTrace"></param>
         /// <returns></returns>
-        public static IParser FromResult(IParserResult result)
+        public static IParser FromResult(IParserResult result, bool allowTrace = false)
         {
-            return new ResultParser(result);
+            return new ResultParser(result, allowTrace);
         }
 
         /// <summary>
         /// Gets the parser which acts as a proxy parser to return an error.
         /// </summary>
         /// <param name="error"></param>
+        /// <param name="allowTrace"></param>
         /// <returns></returns>
-        public static IParser FromError(IParserError error)
+        public static IParser FromError(IParserError error, bool allowTrace = false)
         {
-            return new ErrorParser(error);
+            return new ErrorParser(error, allowTrace);
         }
     }
 }

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaX.Parserz", "AlphaX.Pa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaX.Parserz.Tests", "AlphaX.Parserz.Tests\AlphaX.Parserz.Tests.csproj", "{4C3EFE05-D3D8-4251-B23A-7CFAF6B07B55}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaX.Parserz.Extended", "AlphaX.Parserz.Extended\AlphaX.Parserz.Extended.csproj", "{F3C89CD2-00B1-4516-A7E2-BF476B244CB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaX.Parserz.Playground", "AlphaX.Parserz.Playground\AlphaX.Parserz.Playground.csproj", "{B14E5910-B101-4BAA-B95B-E13A76451089}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{4C3EFE05-D3D8-4251-B23A-7CFAF6B07B55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C3EFE05-D3D8-4251-B23A-7CFAF6B07B55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C3EFE05-D3D8-4251-B23A-7CFAF6B07B55}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3C89CD2-00B1-4516-A7E2-BF476B244CB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3C89CD2-00B1-4516-A7E2-BF476B244CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3C89CD2-00B1-4516-A7E2-BF476B244CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3C89CD2-00B1-4516-A7E2-BF476B244CB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B14E5910-B101-4BAA-B95B-E13A76451089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B14E5910-B101-4BAA-B95B-E13A76451089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B14E5910-B101-4BAA-B95B-E13A76451089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B14E5910-B101-4BAA-B95B-E13A76451089}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

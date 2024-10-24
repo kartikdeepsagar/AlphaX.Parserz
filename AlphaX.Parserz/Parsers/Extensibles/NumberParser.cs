@@ -6,9 +6,11 @@ namespace AlphaX.Parserz.Parsers
 {
     internal class NumberParser : RegexParser<DoubleResult>
     {
-        public NumberParser(bool canParseDecimal = true) :
-            base(GetRegex(canParseDecimal))
-        { }
+        public NumberParser(bool canParseDecimal, bool allowTrace) :
+            base(GetRegex(canParseDecimal), allowTrace)
+        {
+            
+        }
 
         protected override DoubleResult ConvertResult(Match value)
         {
