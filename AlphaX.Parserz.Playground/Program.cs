@@ -1,4 +1,6 @@
-﻿using AlphaX.Parserz.Tracing;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using AlphaX.Parserz.Tracing;
 
 namespace AlphaX.Parserz.Playground
 {
@@ -34,7 +36,8 @@ namespace AlphaX.Parserz.Playground
 
             ParserTracer.Enabled = true;
             var result = emailParser.Run("emailparser1@alphax.com");
-            Console.WriteLine(string.Join(Environment.NewLine, ParserTracer.GetTrace()));
+            Console.WriteLine(JsonSerializer.Serialize(ParserTracer.GetTraces()));
+            IEnumerable<Trace> traces = ParserTracer.GetTraces();
             ParserTracer.Reset();
 
             Console.ReadKey();

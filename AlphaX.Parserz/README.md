@@ -194,49 +194,9 @@ All the Traces can retrieved using the **GetTrace** method as follows:
 ```c#
 ParserTracer.Enabled = true;
 var result = emailParser.Run("emailparser1@alphax.com");
+IEnumerable<Trace> traces = ParserTracer.GetTraces();
 Console.WriteLine(string.Join(Environment.NewLine, ParserTracer.GetTrace()));
 ParserTracer.Reset();
-``` 
-And that's how the trace looks like:
-```json
-LetterParser > Parsing 'emailparser1@alphax.com' at index '0'
-LetterParser > Parsed & left with 'mailparser1@alphax.com'
-LetterParser > Parsing 'emailparser1@alphax.com' at index '1'
-LetterParser > Parsed & left with 'ailparser1@alphax.com'
-LetterParser > Parsing 'emailparser1@alphax.com' at index '2'
-LetterParser > Parsed & left with 'ilparser1@alphax.com'
-LetterParser > Parsing 'emailparser1@alphax.com' at index '3'
-LetterParser > Parsed & left with 'lparser1@alphax.com'
-LetterParser > Parsing 'emailparser1@alphax.com' at index '4'
-LetterParser > Parsed & left with 'parser1@alphax.com'
-LetterParser > Parsing 'emailparser1@alphax.com' at index '5'
-LetterParser > Parsed & left with 'arser1@alphax.com'
-LetterParser > Parsing 'emailparser1@alphax.com' at index '6'
-LetterParser > Parsed & left with 'rser1@alphax.com'
-LetterParser > Parsing 'emailparser1@alphax.com' at index '7'
-LetterParser > Parsed & left with 'ser1@alphax.com'
-LetterParser > Parsing 'emailparser1@alphax.com' at index '8'
-LetterParser > Parsed & left with 'er1@alphax.com'
-LetterParser > Parsing 'emailparser1@alphax.com' at index '9'
-LetterParser > Parsed & left with 'r1@alphax.com'
-LetterParser > Parsing 'emailparser1@alphax.com' at index '10'
-LetterParser > Parsed & left with '1@alphax.com'
-LetterParser > Parsing 'emailparser1@alphax.com' at index '11'
-LetterParser > Parse Failed. Position (11): Unexpected input. Expected 'a-z/A-Z' but got '1'
-DigitParser > Parsing 'emailparser1@alphax.com' at index '11'
-DigitParser > Parsed & left with '@alphax.com'
-LetterParser > Parsing 'emailparser1@alphax.com' at index '12'
-LetterParser > Parse Failed. Position (12): Unexpected input. Expected 'a-z/A-Z' but got '@'
-DigitParser > Parsing 'emailparser1@alphax.com' at index '12'
-DigitParser > Parse Failed. Position (12): Unexpected input. Expected '0-9' but got '@alphax.com'
-StringParser("@") > Parsing 'emailparser1@alphax.com' at index '12'
-StringParser("@") > Parsed & left with 'alphax.com'
-StringParser("alphax") > Parsing 'emailparser1@alphax.com' at index '13'
-StringParser("alphax") > Parsed & left with '.com'
-StringParser(".") > Parsing 'emailparser1@alphax.com' at index '19'
-StringParser(".") > Parsed & left with 'com'
-StringParser("com") > Parsing 'emailparser1@alphax.com' at index '20'
-StringParser("com") > Parsed & left with ''
 ``` 
 **Note**: Parser Tracer is singleton so it will be shared by all the parsers. So always remember to clear the tracing before another parser call using the **Reset** method.
 
