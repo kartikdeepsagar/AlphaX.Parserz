@@ -195,7 +195,7 @@ All the Traces can retrieved using the **GetTrace** method as follows:
 ParserTracer.Enabled = true;
 var result = emailParser.Run("emailparser1@alphax.com");
 IEnumerable<Trace> traces = ParserTracer.GetTraces();
-Console.WriteLine(string.Join(Environment.NewLine, ParserTracer.GetTrace()));
+Console.WriteLine(string.Join(Environment.NewLine, ParserTracer.GetTraces()));
 ParserTracer.Reset();
 ``` 
 **Note**: Parser Tracer is singleton so it will be shared by all the parsers. So always remember to clear the tracing before another parser call using the **Reset** method.
